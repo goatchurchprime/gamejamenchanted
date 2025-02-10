@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=34 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://yrg5yt0yvc1q" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand.tscn" id="1_h2yge"]
@@ -78,6 +78,31 @@ radius = 0.1
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4c57u"]
+frequency = 0.0529
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_efxa6"]
+noise = SubResource("FastNoiseLite_4c57u")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dg77c"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4c57u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+albedo_texture = SubResource("NoiseTexture2D_efxa6")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_dg77c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0.0196078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dg77c"]
+material = SubResource("StandardMaterial3D_efxa6")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.05
 
 [node name="Main" type="Node3D"]
 
@@ -209,7 +234,8 @@ disable_xr_in_editor = true
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.553475, -0.386872, 0.737561, 0.232205, 0.922134, 0.309436, -0.799842, -1.01827e-08, 0.600211, 5.11836, 2.14842, 0)
+transform = Transform3D(-0.0272183, -0.311847, 0.949742, 0.232205, 0.922134, 0.309436, -0.972286, 0.228957, 0.0473135, 5.11836, 8.3401, -5.43711)
+shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -245,6 +271,30 @@ shape = SubResource("CylinderShape3D_2cqfq")
 transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, -0.256298, 0.277325)
 mesh = SubResource("CylinderMesh_yaehf")
 skeleton = NodePath("")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(-0.969029, 0, -0.246948, 0, 1, 0, 0.246948, 0, -0.969029, -7.38143, 0.842078, -11.2087)
+use_collision = true
+radius = 6.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.21823)
+operation = 2
+radius = 5.0
+material = SubResource("StandardMaterial3D_ycdy4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39658, 3.30916, -0.0826082)
+operation = 2
+radius = 2.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20217, 0.565975, -12.0334)
+light_color = Color(1, 1, 0.0784314, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
+mesh = SubResource("CylinderMesh_dg77c")
 
 [editable path="XROrigin3D/XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand"]
 [editable path="XROrigin3D/XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand/Hand_Nails_L"]
