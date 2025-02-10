@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=17 format=3 uid="uid://dv4xkidmcyi4k"]
 
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="1_272bh"]
 [ext_resource type="PackedScene" uid="uid://yrg5yt0yvc1q" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dhaqth6q5yw4n" path="res://addons/godot-xr-tools/hands/model/hand_l.gltf" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ds1t8vc0kxoeo" path="res://addons/godot-xr-tools/hands/model/hand_r.gltf" id="3_lquwl"]
@@ -42,6 +43,8 @@ uv1_scale = Vector3(1, 20, 1)
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.967468, 0)
 
+[node name="StartXR" parent="XROrigin3D/XRCamera3D" instance=ExtResource("1_272bh")]
+
 [node name="XRControllerLeft" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29162, 0.721012, -0.659748)
 tracker = &"left_hand"
@@ -52,6 +55,7 @@ hand_skeleton = NodePath("hand_l/Armature/Skeleton3D")
 [node name="hand_l" parent="XROrigin3D/XRControllerLeft/XRToolsCollisionHand" instance=ExtResource("2_1bvp3")]
 
 [node name="MovementDirect" parent="XROrigin3D/XRControllerLeft" instance=ExtResource("4_7mycd")]
+strafe = true
 
 [node name="XRController3D" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314656, 0.719788, -0.991062)
