@@ -296,6 +296,7 @@ environment = SubResource("Environment_h2yge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.0272183, -0.311847, 0.949742, 0.232205, 0.922134, 0.309436, -0.972286, 0.228957, 0.0473135, 5.11836, 8.3401, -5.43711)
+visible = false
 shadow_enabled = true
 
 [node name="Treetrunk" type="CSGCylinder3D" parent="."]
