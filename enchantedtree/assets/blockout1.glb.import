@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cmuv0fu8xnbqx"
-path="res://.godot/imported/blockout.glb-4f2de370b26665fc86eb35ed398ac173.scn"
+uid="uid://dgo4uia1bpsj0"
+path="res://.godot/imported/blockout1.glb-e8e7f612d1171efbaa090f3e6fe54847.scn"
 
 [deps]
 
-source_file="res://assets/blockout.glb"
-dest_files=["res://.godot/imported/blockout.glb-4f2de370b26665fc86eb35ed398ac173.scn"]
+source_file="res://assets/blockout1.glb"
+dest_files=["res://.godot/imported/blockout1.glb-e8e7f612d1171efbaa090f3e6fe54847.scn"]
 
 [params]
 
