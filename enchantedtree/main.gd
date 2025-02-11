@@ -1,5 +1,8 @@
 extends Node3D
 
+func _ready() -> void:
+	pass
+
 func getcontextmenutexts():
 	return [ "togglecandle", "toggleshadow" ]
 
