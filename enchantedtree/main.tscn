@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=46 format=4 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="1_272bh"]
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
@@ -109,6 +109,18 @@ noise = SubResource("FastNoiseLite_4c57u")
 albedo_texture = SubResource("NoiseTexture2D_efxa6")
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_dg77c")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2cqfq"]
+frequency = 0.117
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yaehf"]
+noise = SubResource("FastNoiseLite_2cqfq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_074og"]
+albedo_color = Color(0.883457, 0.497623, 0.179114, 1)
+albedo_texture = SubResource("NoiseTexture2D_yaehf")
+metallic = 0.18
+roughness = 0.8
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2cqfq"]
 lightmap_size_hint = Vector2i(766, 1210)
@@ -299,14 +311,8 @@ disable_xr_in_editor = true
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.0272183, -0.311847, 0.949742, 0.232205, 0.922134, 0.309436, -0.972286, 0.228957, 0.0473135, 5.11836, 8.3401, -5.43711)
+transform = Transform3D(0.684063, -0.425322, 0.592587, 0.157388, 0.879333, 0.449447, -0.712241, -0.214185, 0.668459, 5.11836, 8.3401, -5.43711)
 shadow_enabled = true
-
-[node name="Treetrunk" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.07843, 0, -1.96035)
-use_collision = true
-radius = 0.2
-height = 5.0
 
 [node name="Stump" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183296, -2.24788)
@@ -325,24 +331,34 @@ transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 
 mesh = SubResource("CylinderMesh_yaehf")
 skeleton = NodePath("")
 
-[node name="CandleLight" type="OmniLight3D" parent="."]
+[node name="CandleLightIgloo" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20217, 0.565975, -12.0334)
 light_color = Color(1, 1, 0.0784314, 1)
 light_bake_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CandleLight"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CandleLightIgloo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
+mesh = SubResource("CylinderMesh_dg77c")
+
+[node name="CandleLightConetree" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.122, 0.624245, 16.575)
+light_color = Color(1, 1, 0.0784314, 1)
+light_energy = 1.696
+light_bake_mode = 1
+omni_range = 6.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CandleLightConetree"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
 mesh = SubResource("CylinderMesh_dg77c")
 
 [node name="CSGBlockout" type="Node3D" parent="."]
 
 [node name="OrgModels" type="Node3D" parent="CSGBlockout"]
-visible = false
 
 [node name="Floor" type="CSGBox3D" parent="CSGBlockout/OrgModels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1.43406)
 use_collision = true
-size = Vector3(30, 1, 30)
+size = Vector3(30, 1, 40)
 material = SubResource("StandardMaterial3D_272bh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBlockout/OrgModels/Floor"]
@@ -351,23 +367,72 @@ operation = 2
 size = Vector3(30, 1, 3)
 material = SubResource("StandardMaterial3D_4c57u")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBlockout/OrgModels"]
+[node name="Igloo" type="CSGSphere3D" parent="CSGBlockout/OrgModels"]
 transform = Transform3D(-0.969029, 0, -0.246948, 0, 1, 0, 0.246948, 0, -0.969029, -7.38143, 0.842078, -11.2087)
 use_collision = true
 radius = 6.0
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBlockout/OrgModels/CSGSphere3D"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBlockout/OrgModels/Igloo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.21823)
 operation = 2
 radius = 5.0
 material = SubResource("StandardMaterial3D_ycdy4")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/CSGSphere3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/Igloo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39658, 3.30916, -0.0826082)
 operation = 2
 radius = 2.0
 
+[node name="ConeTree" type="CSGCombiner3D" parent="CSGBlockout/OrgModels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 4.60127, 12.8211)
+material_override = SubResource("StandardMaterial3D_074og")
+use_collision = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGBlockout/OrgModels/ConeTree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.14536, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree/CSGCombiner3D"]
+transform = Transform3D(0.750573, 0, 0.991182, 0, 1, 0, -0.660788, 0, 1.12586, 0, 25, 1.48007)
+radius = 6.5
+height = 60.0
+cone = true
+smooth_faces = false
+
+[node name="VoidSection" type="CSGCombiner3D" parent="CSGBlockout/OrgModels/ConeTree"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.104587, 0, -0.0871557, 1.19543, 0, 0.580856, 0)
+radius = 3.0
+height = 12.0
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.562935, -0.0720343, 1.64671, 0, 0.996195, 0.174311, -0.826501, -0.049063, 1.12159, 0, -1.22544, 2.54548)
+radius = 3.0
+height = 6.0
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.983019, 0.182807, 0.0191922, -0.183505, 0.979278, 0.102811, 0, -0.0871557, 1.19543, -1.71212, 0.465476, 1.22862)
+radius = 2.0
+height = 4.0
+cone = true
+
+[node name="Door" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.921477, 0.388309, -0.00980878, 0, -0.0252522, -0.999681, -0.388432, 0.921183, -0.0232693, -1.83286, -3.52314, -3.97648)
+radius = 2.0
+height = 7.0
+
+[node name="EditorViewAccess" type="CSGCylinder3D" parent="CSGBlockout/OrgModels/ConeTree"]
+transform = Transform3D(-0.036417, 0.999337, 0, -0.999337, -0.036417, 0, 0, 0, 1, -4.02244, 0, -0.199646)
+visible = false
+operation = 2
+radius = 6.0
+height = 9.0
+
 [node name="BakedMeshes" type="Node3D" parent="CSGBlockout"]
+visible = false
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="CSGBlockout/BakedMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -380,12 +445,13 @@ mesh = SubResource("ArrayMesh_yaehf")
 skeleton = NodePath("../../OrgModels")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0373206, 0, -0.0303802)
 visible = false
 light_data = ExtResource("15_vivmo")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.991179, -0.0197031, 0.131061, -0.0129884, 0.969687, 0.244006, -0.131896, -0.243556, 0.960877, -8.98185, 4.36971, -0.365314)
-light_energy = 8.873
+transform = Transform3D(0.998493, -0.00043508, 0.0548789, -0.0129884, 0.969687, 0.244006, -0.0533215, -0.244351, 0.96822, -9.23582, 4.36971, -0.365314)
+light_energy = 15.0
 light_projector = ExtResource("15_2cqfq")
 shadow_enabled = true
 shadow_caster_mask = 4294967294
