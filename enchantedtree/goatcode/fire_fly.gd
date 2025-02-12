@@ -2,24 +2,24 @@ extends RigidBody3D
 
 
 var target = null
-var vel = 1.5
-func _process(delta):
+var flyvelocity = 1.2
+var xzrange = 3.0
+var yrange = 0.5
+var xzmotion = 0.9
+var ymotion = 0.2
+func _physics_process(delta):
 	var tvec = target - position if target != null else Vector3.ZERO
-	var tdist = tvec.length() if target != null else 0.0
+	var tdist = tvec.length()
 	if tdist < 0.05:
-		var tpos = Vector3(
-			clampf(position.x + randf_range(-1, 1), -2, 2), 
-			clampf(position.y + randf_range(-1, 1)*0.2, 0.6, 1.8), 
-			clampf(position.z + randf_range(-1, 1), -2, 2))
-		look_at(tpos)
-		$RayCast3D.force_raycast_update()
-		if $RayCast3D.is_colliding():
-			target = $RayCast3D.get_collision_point()
-		else:
-			target = $RayCast3D.global_transform*$RayCast3D.target_position
+		target = Vector3(
+			clampf(position.x + randf_range(-xzmotion, xzmotion), -xzrange, xzrange), 
+			clampf(position.y + randf_range(-yrange, yrange), -ymotion, max(ymotion, position.y)), 
+			clampf(position.z + randf_range(-xzmotion, xzmotion), -xzrange, xzrange))
+		look_at(get_parent().global_transform*target)
 		tvec = target - position
 		tdist = tvec.length()
-		
-		$Glow.get_surface_override_material(0).albedo_color = Color.YELLOW * ((sin(Time.get_ticks_msec()*0.005) + 1)/2)
-
-	position += tvec*(delta*vel/tdist)
+	var k = move_and_collide(tvec*(delta*flyvelocity/tdist))
+	if k:
+		print(k)
+		target = null
+	$Glow.get_surface_override_material(0).albedo_color = Color.YELLOW * max(0, sin(Time.get_ticks_msec()*0.005))

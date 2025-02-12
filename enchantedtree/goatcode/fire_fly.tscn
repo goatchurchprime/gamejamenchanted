@@ -31,14 +31,11 @@ script = ExtResource("1_g0mfo")
 shape = SubResource("CapsuleShape3D_yaehf")
 
 [node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -0.0298997)
 mesh = SubResource("BoxMesh_074og")
 surface_material_override/0 = SubResource("StandardMaterial3D_cegan")
 
 [node name="Glow" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00211293, 0.00920069)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.00211293, 0.00920069)
 mesh = SubResource("BoxMesh_82xsv")
 surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-enabled = false
-target_position = Vector3(0, 0, -0.5)

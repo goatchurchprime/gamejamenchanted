@@ -127,10 +127,17 @@ transform = Transform3D(0.965336, 0, 0.26101, 0, 1, 0, -0.26101, 0, 0.965336, 0,
 mesh = SubResource("PrismMesh_yaehf")
 
 [node name="FireFlies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.553757, 1.35127, -2.05955)
 script = ExtResource("9_2cqfq")
 
 [node name="FireFly" parent="FireFlies" instance=ExtResource("10_yaehf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.832436, -1.53837)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.66417, 0)
+
+[node name="Timer" type="Timer" parent="FireFlies"]
+wait_time = 4.0
+autostart = true
+
+[node name="FlyList" type="Node3D" parent="FireFlies"]
 
 [node name="Stump" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183296, -2.24788)
@@ -175,10 +182,6 @@ omni_range = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
 mesh = SubResource("CylinderMesh_dg77c")
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0373206, 0, -0.0303802)
-visible = false
-
 [node name="TaviBlockouts" type="Node3D" parent="."]
 
 [node name="BlockoutDepression" parent="TaviBlockouts" instance=ExtResource("16_074og")]
@@ -206,5 +209,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4935, 0.84815, -2.0128)
 
 [node name="Hammer" parent="DomiTools" instance=ExtResource("15_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148918, 0.886228, -1.98565)
+
+[connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
 
 [editable path="TaviBlockouts/BlockoutDepression"]
