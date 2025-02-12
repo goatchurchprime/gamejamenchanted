@@ -17,6 +17,7 @@ var left_controller: XRController3D
 var right_controller: XRController3D
 var left_tracker: XRPositionalTracker
 var right_tracker: XRPositionalTracker
+var xrnodes_aim = [ ]
 
 var toggle_left_controller = false
 var toggle_right_controller = false
@@ -57,6 +58,10 @@ func _on_node_added(node: Node):
 			right_controller = node
 			right_tracker.set_pose(pose, node.transform, Vector3.ZERO, Vector3.ZERO, XRPose.XR_TRACKING_CONFIDENCE_HIGH)
 			XRServer.add_tracker(right_tracker)
+	elif node is XRNode3D:
+		if node.tracker == "left_hand" or node.tracker == "right_hand":
+			if node.pose == "aim":
+				xrnodes_aim.append(node)
 
 func _search_first_xr_nodes(node: Node):
 	for child in node.get_children():
@@ -67,7 +72,8 @@ func _ready():
 	if not enabled or not OS.has_feature("editor"):
 		enabled = false
 		return
-	
+
+	print("XRServer.get_trackers() ", XRServer.get_trackers(XRServer.TRACKER_ANY))
 	var left_hand = XRServer.get_tracker("left_hand")
 	if left_hand == null:
 		left_tracker = XRPositionalTracker.new()
@@ -76,7 +82,7 @@ func _ready():
 		left_tracker.name = "left_hand"
 	else:
 		left_tracker = left_hand
-	
+
 	var right_hand = XRServer.get_tracker("right_hand")
 	if right_hand == null:
 		right_tracker = XRPositionalTracker.new()
@@ -85,14 +91,19 @@ func _ready():
 		right_tracker.name = "right_hand"
 	else:
 		right_tracker = right_hand
-	
+
 	get_tree().node_added.connect(_on_node_added)
 	_search_first_xr_nodes(get_tree().root)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(_delta):
 	if enabled and disable_xr_in_editor and OS.has_feature("editor") and viewport.use_xr:
-		viewport.use_xr = false
+		viewport.use_xr = true
+	for xrnode in xrnodes_aim:
+		if xrnode.tracker == "left_hand":
+			xrnode.transform = left_controller.transform
+		if xrnode.tracker == "right_hand":
+			xrnode.transform = right_controller.transform
 
 func _input(event):
 	if not enabled or not OS.has_feature("editor"):
@@ -102,11 +113,11 @@ func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	elif Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and event is InputEventMouseButton:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED	
-	
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		return
-	
+
 	simulate_joysticks()
 	var is_any_controller_selected = false
 	if event is InputEventMouseMotion:
@@ -143,23 +154,23 @@ func _input(event):
 				toggle_left_controller = !toggle_left_controller
 			elif event.keycode == KEY_E:
 				toggle_right_controller = !toggle_right_controller
-			
+
 		if Input.is_physical_key_pressed(KEY_Q) or toggle_left_controller:
 			simulate_buttons(event, left_controller)
 		if Input.is_physical_key_pressed(KEY_E) or toggle_right_controller:
 			simulate_buttons(event, right_controller)
-			
+
 func camera_height(event: InputEventMouseButton):
 	var direction = -1
-	
+
 	if not event.pressed:
 		return
-	
+
 	if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		direction = 1
 	elif event.button_index != MOUSE_BUTTON_WHEEL_DOWN:
 		return
-	
+
 	var pos = camera.transform.origin
 	var camera_y = pos.y + (scroll_sensitivity * direction)/20
 	if (camera_y >= max_camera_height or camera_y <= min_camera_height) and is_camera_height_limited:
@@ -171,7 +182,7 @@ func simulate_joysticks():
 	left_tracker.set_input("primary", vec_left)
 
 	var vec_right = vector_key_mapping(KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN)
-	
+
 	right_tracker.set_input("primary", vec_right)
 
 func simulate_trigger(event: InputEventMouseButton, controller: XRController3D):
@@ -207,20 +218,20 @@ func move_controller(event: InputEventMouseMotion, controller: XRController3D):
 	movement += camera.global_transform.basis.x * event.relative.x * device_x_sensitivity/1000
 	movement += camera.global_transform.basis.y * event.relative.y * -device_y_sensitivity/1000
 	controller.global_translate(movement)
-	
+
 func attract_controller(event: InputEventMouseButton, controller: XRController3D):
 	if not camera:
 		return
 	var direction = -1
-	
+
 	if not event.pressed:
 		return
-	
+
 	if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		direction = 1
 	elif event.button_index != MOUSE_BUTTON_WHEEL_DOWN:
 		return
-	
+
 	var distance_vector = controller.global_transform.origin - camera.global_transform.origin
 	var forward = distance_vector.normalized() * direction
 	var movement = distance_vector + forward * (scroll_sensitivity/20)
@@ -231,7 +242,7 @@ func rotate_device(event: InputEventMouseMotion, device: Node3D):
 	var motion = event.relative
 	device.rotate_y(motion.x * -device_x_sensitivity/1000)
 	device.rotate(device.transform.basis.x, motion.y * -device_y_sensitivity/1000)
-	
+
 func vector_key_mapping(key_positive_x: int, key_negative_x: int, key_positive_y: int, key_negative_y: int):
 	var x = 0
 	var y = 0
@@ -239,15 +250,15 @@ func vector_key_mapping(key_positive_x: int, key_negative_x: int, key_positive_y
 		y = 1
 	elif Input.is_physical_key_pressed (key_negative_y):
 		y = -1
-	
+
 	if Input.is_physical_key_pressed (key_positive_x):
 		x = 1
 	elif Input.is_physical_key_pressed (key_negative_x):
 		x = -1
-	
+
 	var vec = Vector2(x, y)
-	
+
 	if vec:
 		vec = vec.normalized()
-	
+
 	return vec
