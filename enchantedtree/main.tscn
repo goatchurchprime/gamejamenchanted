@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=26 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
 [ext_resource type="Texture2D" uid="uid://dh5lcqwx7bsme" path="res://images/2025-02-06_13.27.16.webp" id="15_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dggndb8vfmgar" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_NormalGL2.jpg" id="15_82xsv"]
-[ext_resource type="LightmapGIData" uid="uid://dt2etr64tl3qr" path="res://bakedstuff/main.lmbake" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="15_yaehf"]
 [ext_resource type="Texture2D" uid="uid://crgoctai5mx5r" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Roughness2.jpg" id="16_getpj"]
 [ext_resource type="PackedScene" uid="uid://dgo4uia1bpsj0" path="res://assets/blockout1.glb" id="16_yaehf"]
@@ -164,7 +163,6 @@ mesh = SubResource("CylinderMesh_dg77c")
 [node name="LightmapGI" type="LightmapGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0373206, 0, -0.0303802)
 visible = false
-light_data = ExtResource("15_vivmo")
 
 [node name="TaviBlockouts" type="Node3D" parent="."]
 
@@ -179,7 +177,7 @@ shape = SubResource("ConcavePolygonShape3D_074og")
 [node name="DomiTools" type="Node3D" parent="."]
 
 [node name="Chisel" parent="DomiTools" instance=ExtResource("14_vivmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.251513, 0.947942, -1.80973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4935, 0.84815, -2.0128)
 
 [node name="Hammer" parent="DomiTools" instance=ExtResource("15_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148918, 0.886228, -1.98565)

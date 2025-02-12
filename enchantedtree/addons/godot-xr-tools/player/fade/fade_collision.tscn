@@ -4,4 +4,3 @@
 
 [node name="FadeCollision" type="Node3D"]
 script = ExtResource("1_xrp2u")
-fade_color = null
