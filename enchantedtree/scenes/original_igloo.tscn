@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://m8ppw3hq3qjm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4c57u"]
+frequency = 0.0529
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_efxa6"]
+noise = SubResource("FastNoiseLite_4c57u")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dg77c"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4c57u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+albedo_texture = SubResource("NoiseTexture2D_efxa6")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_dg77c")
+
+[node name="OriginalIgloo" type="CSGSphere3D"]
+transform = Transform3D(-0.969029, 0, -0.246948, 0, 1, 0, 0.246948, 0, -0.969029, 0, 0, 0)
+use_collision = true
+radius = 6.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.21823)
+operation = 2
+radius = 5.0
+material = SubResource("StandardMaterial3D_ycdy4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39658, 3.30916, -0.0826082)
+operation = 2
+radius = 2.0

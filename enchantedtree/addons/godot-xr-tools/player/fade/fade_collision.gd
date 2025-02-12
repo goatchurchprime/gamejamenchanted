@@ -15,6 +15,7 @@ extends Node3D
 ## Collision distance for totally obscuring the view
 @export var fade_full_distance : float = 0.15
 
+@export var fade_color : Color = Color.YELLOW
 
 # Shape to use for collision detection
 var _collision_shape : Shape3D
@@ -60,7 +61,7 @@ func _physics_process(_delta : float) -> void:
 
 		# Fade based on distance
 		var alpha := inverse_lerp(fade_start_distance, fade_full_distance, length)
-		XRToolsFade.set_fade(self, Color(0, 0, 0, alpha))
+		XRToolsFade.set_fade(self, Color(fade_color, alpha))
 	else:
 		# No collision
 		XRToolsFade.set_fade(self, Color(0, 0, 0, 0))
