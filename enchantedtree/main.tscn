@@ -70,6 +70,7 @@ shadow_enabled = true
 
 [node name="OriginalIgloo" parent="." instance=ExtResource("5_w48qg")]
 transform = Transform3D(-0.969029, 0, -0.246948, 0, 1, 0, 0.246948, 0, -0.969029, -7.38143, 0.842078, -11.2087)
+visible = false
 
 [node name="CandleLightIgloo" type="OmniLight3D" parent="OriginalIgloo"]
 transform = Transform3D(-0.969029, 0, 0.246948, 0, 1, 0, -0.246948, 0, -0.969029, -2.31542, -0.276103, 0.260994)
