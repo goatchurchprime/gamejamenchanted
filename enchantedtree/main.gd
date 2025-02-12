@@ -28,17 +28,25 @@ func getyouintothetree():
 	tween.tween_method(set_fade, 0.0, 1.0, 0.3)
 	await tween.finished
 	tween.kill()
-	tween = get_tree().create_tween()
+
 	$XROrigin3D/PlayerBody.teleport(find_child("PosIntoTree").global_transform)
+	$WorldEnvironment/DirectionalLight3D.visible = false
+	$WorldEnvironment.environment.background_energy_multiplier = 0.02
+	tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
 
 func getyoutothespawnpoint():
-	var tween = get_tree().create_tween()
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
+	$WorldEnvironment/DirectionalLight3D.visible = true
+	$WorldEnvironment.environment.background_energy_multiplier = 1.0
+	var tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
 
 
+
+
+
 func _process(delta):
-	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-4,4)*delta, 1, 3)
+	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
