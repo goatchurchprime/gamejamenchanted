@@ -98,7 +98,7 @@ func _ready():
 
 func _process(_delta):
 	if enabled and disable_xr_in_editor and OS.has_feature("editor") and viewport.use_xr:
-		viewport.use_xr = false
+		viewport.use_xr = true
 	for xrnode in xrnodes_aim:
 		if xrnode.tracker == "left_hand":
 			xrnode.transform = left_controller.transform
