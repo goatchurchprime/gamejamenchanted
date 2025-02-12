@@ -25,6 +25,8 @@ sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
 sky = SubResource("Sky_lquwl")
+glow_intensity = 1.5
+glow_blend_mode = 0
 
 [sub_resource type="PrismMesh" id="PrismMesh_yaehf"]
 size = Vector3(0.1, 0.1, 0.1)
