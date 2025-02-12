@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://btmit5ngynkqv"]
+
+[ext_resource type="Script" uid="uid://cwkgsrc5efaxq" path="res://goatcode/fire_fly.gd" id="1_g0mfo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yaehf"]
+radius = 0.002
+height = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_074og"]
+size = Vector3(0.005, 0.005, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cegan"]
+albedo_color = Color(0.176419, 0.176419, 0.176419, 1)
+metallic = 0.55
+roughness = 0.28
+
+[sub_resource type="BoxMesh" id="BoxMesh_82xsv"]
+size = Vector3(0.007, 0.007, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_getpj"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(1, 1, 0.207843, 1)
+
+[node name="FireFly" type="RigidBody3D"]
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_g0mfo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yaehf")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_074og")
+surface_material_override/0 = SubResource("StandardMaterial3D_cegan")
+
+[node name="Glow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00211293, 0.00920069)
+mesh = SubResource("BoxMesh_82xsv")
+surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, -0.5)
