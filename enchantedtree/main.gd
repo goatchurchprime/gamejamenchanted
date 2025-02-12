@@ -14,7 +14,8 @@ func _on_radial_menu_menuitemselected(menutext):
 	elif menutext == "toggleshadow":
 		#$CandleLight.shadow_enabled = not $CandleLight.shadow_enabled
 		$WorldEnvironment/DirectionalLight3D.shadow_enabled = not $WorldEnvironment/DirectionalLight3D.shadow_enabled
-	#elif menutext == "intotree":
+	elif menutext == "intotree":
+		$XROrigin3D/PlayerBody.teleport(find_child("PosIntoTree").global_transform)
 		
 
 

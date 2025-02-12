@@ -17,7 +17,6 @@ roughness = 0.8
 [node name="OrgModels" type="Node3D" parent="."]
 
 [node name="ConeTree" type="CSGCombiner3D" parent="OrgModels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 4.60127, 12.8211)
 material_override = SubResource("StandardMaterial3D_074og")
 use_collision = true
 
