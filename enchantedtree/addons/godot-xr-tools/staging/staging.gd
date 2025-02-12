@@ -90,8 +90,8 @@ func _ready():
 		return
 
 	# Specify the camera to track
-	if xr_camera:
-		$LoadingScreen.set_camera(xr_camera)
+	#if xr_camera:
+		#$LoadingScreen.set_camera(xr_camera)
 
 	# We start by loading our main level scene
 	load_scene(main_scene)
