@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=27 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
 [ext_resource type="PackedScene" uid="uid://ccxxjdxanad7i" path="res://Player.tscn" id="3_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b2q8j5joqb61m" path="res://scenes/basic_floor_blockout.tscn" id="4_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://m8ppw3hq3qjm" path="res://scenes/original_igloo.tscn" id="5_w48qg"]
+[ext_resource type="Texture2D" uid="uid://buuuwdedrsvgg" path="res://images/treelightcookie1.png" id="8_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://cmhs0rbn7qqmq" path="res://scenes/GoatTreeBlockout.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="10_4c57u"]
 [ext_resource type="Texture2D" uid="uid://lvtu4r47cr1t" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Color2.jpg" id="14_cegan"]
@@ -97,6 +98,17 @@ shadow_enabled = true
 shadow_caster_mask = 4294967294
 spot_range = 20.0
 spot_angle = 20.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.558753, -0.733172, 0.387626, -0.636718, 0.678724, 0.365955, -0.5314, -0.0423301, -0.846063, 4.47471, 12.7154, 5.45465)
+light_energy = 800.0
+light_projector = ExtResource("8_2cqfq")
+shadow_enabled = true
+shadow_caster_mask = 4293918722
+spot_range = 30.0
+spot_attenuation = 0.0
+spot_angle = 30.0
+spot_angle_attenuation = 0.0669859
 
 [node name="GoatTreeBlockout" parent="." instance=ExtResource("8_efxa6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 4.601, 12.821)

@@ -9,7 +9,6 @@ func getcontextmenutexts():
 
 func _on_radial_menu_menuitemselected(menutext):
 	if menutext == "togglecandle":
-		$CandleLightIgloo.visible = not $CandleLightIgloo.visible
 		$CandleLightConetree.visible = not $CandleLightConetree.visible
 	elif menutext == "toggleshadow":
 		#$CandleLight.shadow_enabled = not $CandleLight.shadow_enabled
@@ -31,7 +30,7 @@ func getyouintothetree():
 
 	$XROrigin3D/PlayerBody.teleport(find_child("PosIntoTree").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = false
-	$WorldEnvironment.environment.background_energy_multiplier = 0.02
+	$WorldEnvironment.environment.background_energy_multiplier = 0.09
 	tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
@@ -43,10 +42,6 @@ func getyoutothespawnpoint():
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
-
-
-
-
 
 func _process(delta):
 	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
