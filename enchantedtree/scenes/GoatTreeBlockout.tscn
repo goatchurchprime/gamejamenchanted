@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmhs0rbn7qqmq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2cqfq"]
+frequency = 0.117
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yaehf"]
+noise = SubResource("FastNoiseLite_2cqfq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_074og"]
+albedo_color = Color(0.883457, 0.497623, 0.179114, 1)
+albedo_texture = SubResource("NoiseTexture2D_yaehf")
+metallic = 0.18
+roughness = 0.8
+
+[node name="GoatTreeBlockout" type="Node3D"]
+
+[node name="OrgModels" type="Node3D" parent="."]
+
+[node name="ConeTree" type="CSGCombiner3D" parent="OrgModels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 4.60127, 12.8211)
+material_override = SubResource("StandardMaterial3D_074og")
+use_collision = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="OrgModels/ConeTree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.14536, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="OrgModels/ConeTree/CSGCombiner3D"]
+transform = Transform3D(0.750573, 0, 0.991182, 0, 1, 0, -0.660788, 0, 1.12586, 0, 25, 1.48007)
+radius = 6.5
+height = 60.0
+cone = true
+smooth_faces = false
+
+[node name="VoidSection" type="CSGCombiner3D" parent="OrgModels/ConeTree"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.104587, 0, -0.0871557, 1.19543, 0, 0.580856, 0)
+radius = 3.0
+height = 12.0
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.562935, -0.0720343, 1.64671, 0, 0.996195, 0.174311, -0.826501, -0.049063, 1.12159, 0, -1.22544, 2.54548)
+radius = 3.0
+height = 6.0
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.983019, 0.182807, 0.0191922, -0.183505, 0.979278, 0.102811, 0, -0.0871557, 1.19543, -1.71212, 0.465476, 1.22862)
+radius = 2.0
+height = 4.0
+cone = true
+
+[node name="Door" type="CSGCylinder3D" parent="OrgModels/ConeTree/VoidSection"]
+transform = Transform3D(0.921477, 0.388309, -0.00980878, 0, -0.0252522, -0.999681, -0.388432, 0.921183, -0.0232693, -1.83286, -3.52314, -3.97648)
+radius = 2.0
+height = 7.0
+
+[node name="EditorViewAccess" type="CSGCylinder3D" parent="OrgModels/ConeTree"]
+transform = Transform3D(-0.036417, 0.999337, 0, -0.999337, -0.036417, 0, 0, 0, 1, -4.02244, 0, -0.199646)
+visible = false
+operation = 2
+radius = 6.0
+height = 9.0
+
+[node name="BakedMeshes" type="Node3D" parent="."]
+visible = false
