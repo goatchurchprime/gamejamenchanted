@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c6e1st1esi12g"
+path="res://.godot/imported/Socapex - Swordsmall.wav-06fc96077d928559b3c3d1ea1d42c32c.sample"
+
+[deps]
+
+source_file="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Swordsmall.wav"
+dest_files=["res://.godot/imported/Socapex - Swordsmall.wav-06fc96077d928559b3c3d1ea1d42c32c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

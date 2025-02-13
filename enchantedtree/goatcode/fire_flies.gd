@@ -39,5 +39,6 @@ func sethandlighton(handlight):
 	tween.tween_callback(handlight.set_visible.bind(false))
 	tween.tween_callback(sethandlightoff.bind(handlight))
 	activehandlighttweens[handlight] = tween
-	
+	$BugSquelch.position = handlight.global_position
+	$BugSquelch.play()
 	

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://mcjaktcbh5t5"
+path="res://.godot/imported/Socapex - blub_hurt2.wav-7a55dfa59098fb8ce4986d930784f266.sample"
+
+[deps]
+
+source_file="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - blub_hurt2.wav"
+dest_files=["res://.godot/imported/Socapex - blub_hurt2.wav-7a55dfa59098fb8ce4986d930784f266.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
