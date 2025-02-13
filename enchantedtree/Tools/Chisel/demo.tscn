@@ -154,15 +154,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151449, 0.827296, 0.26932)
 
 [node name="Hammer" parent="Stump" instance=ExtResource("9_hk4ms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.309717, 0.990592, 0.208023)
-enabled = true
-press_to_hold = true
-picked_up_layer = 65536
-release_mode = -1
-ranged_grab_method = 1
-second_hand_grab = 0
-ranged_grab_speed = 20.0
-picked_by_exclude = ""
-picked_by_require = ""
 
 [node name="CandleLightIgloo" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20217, 0.565975, -12.0334)

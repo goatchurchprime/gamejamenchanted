@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="10_cgsek"]
 [ext_resource type="PackedScene" uid="uid://2h8mjimpo5ra" path="res://addons/xr-radialmenu/XRNodeAim.tscn" id="11_0pi4m"]
 [ext_resource type="PackedScene" uid="uid://b228p8k6sonve" path="res://addons/godot-xr-tools/player/fade/fade_collision.tscn" id="12_l6ohk"]
-[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/desktop-support/movement_gravity_zones.tscn" id="17_rv870"]
+[ext_resource type="PackedScene" uid="uid://du140tvf1v1b1" path="res://addons/godot-xr-tools/desktop-support/movement_gravity_zones.tscn" id="17_rv870"]
 [ext_resource type="PackedScene" uid="uid://kyhaogt0a4q8" path="res://addons/godot-xr-tools/functions/movement_flight.tscn" id="18_itxgx"]
 [ext_resource type="PackedScene" uid="uid://cfa5gsol863rv" path="res://addons/godot-xr-tools/desktop-support/movement_desktop_flight.tscn" id="19_cgsek"]
 [ext_resource type="AudioStream" uid="uid://d1xuioeuqt0fy" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_5.wav" id="20_cgsek"]
