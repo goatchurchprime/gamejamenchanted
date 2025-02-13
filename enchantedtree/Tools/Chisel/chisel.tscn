@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbhbxx871gscn"]
+[gd_scene load_steps=11 format=3 uid="uid://dbhbxx871gscn"]
 
 [ext_resource type="Script" uid="uid://dcyq7kyuylstx" path="res://Tools/Chisel/chisel.gd" id="1_0ruxo"]
 [ext_resource type="Script" uid="uid://6kmn3ox5u8mt" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_suid3"]
@@ -10,48 +10,87 @@
 height = 0.00628662
 radius = 0.0185547
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0ruxo"]
-radius = 0.00979217
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45tt"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6l8po"]
 points = PackedVector3Array(0.0633, 0.0137406, 0.0121406, 0.0633, 0.0137406, -0.0137994, 0.0633, -0.0121994, 0.0121406, -0.123917, 0.00387381, 0.00537698, 0.0633, -0.0121994, -0.0137994, -0.127052, -0.00233254, -0.00393254, -0.0804903, -0.00233254, 0.0115833, -0.0929006, 0.00387381, -0.0101389, 0.0125594, -0.0116421, 0.0115833, 0.0280859, -0.0116421, -0.0132421, 0.0373981, 0.0131833, -0.0132421, -0.123917, -0.00233254, 0.00537698, -0.0804903, 0.00387381, 0.0115833, -0.127052, 0.00387381, -0.00393254, 0.0373981, 0.0131833, 0.0115833, -0.074276, -0.00543571, -0.0101389, 0.0125594, -0.0116421, -0.0101389, 0.00326535, 0.0100777, -0.0132421, -0.0929006, -0.00233254, -0.0101389, -0.0649638, -0.00543571, 0.0115833, -0.0649638, 0.00697698, -0.0101389, -0.127052, -0.00233254, 0.00227381, -0.127052, 0.00387381, 0.00227381, -0.111507, 0.00387381, -0.00703571, -0.111507, -0.00233254, -0.00703571)
 
-[node name="Chisel" type="RigidBody3D"]
-collision_layer = 4
-collision_mask = 196615
-freeze = true
-script = ExtResource("1_0ruxo")
-picked_up_layer = 327684
-metadata/_custom_type_script = ExtResource("1_suid3")
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ruxo"]
+radius = 0.151925
 
-[node name="HammerArea" type="Area3D" parent="." groups=["chisel_hammer_hit"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0734197, 0, 0)
+[sub_resource type="SphereShape3D" id="SphereShape3D_o45tt"]
+radius = 0.0376924
+
+[node name="Chisel" type="Node3D"]
+script = ExtResource("1_0ruxo")
+
+[node name="PhysicsChiselContainer" type="StaticBody3D" parent="."]
+top_level = true
+collision_layer = 98304
+collision_mask = 98304
+
+[node name="HammerArea" type="Area3D" parent="PhysicsChiselContainer" groups=["chisel_hammer_hit"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0734197, 0, -0.00295192)
+collision_layer = 4096
+collision_mask = 4096
 script = ExtResource("3_o45tt")
 
-[node name="CollisionZone3D" type="CollisionShape3D" parent="HammerArea"]
+[node name="CollisionZone3D" type="CollisionShape3D" parent="PhysicsChiselContainer/HammerArea"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.00204768, 0.000953496, 0)
 shape = SubResource("CylinderShape3D_0ruxo")
+debug_color = Color(0.968513, 0, 0.46738, 0.42)
 
-[node name="HitPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13014, 0, 0)
+[node name="Label3D" type="Label3D" parent="PhysicsChiselContainer/HammerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0451269, 0)
+pixel_size = 0.004
+text = "Test"
+font_size = 12
+outline_size = 1
 
-[node name="RuneDetectArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132632, 0, 0)
+[node name="Chisel2" parent="PhysicsChiselContainer" instance=ExtResource("4_o45tt")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RuneDetectArea"]
+[node name="Chisel" parent="PhysicsChiselContainer/Chisel2" index="0"]
+material_override = SubResource("StandardMaterial3D_o45tt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsChiselContainer"]
+shape = SubResource("ConvexPolygonShape3D_6l8po")
+
+[node name="HitPoint" type="Marker3D" parent="PhysicsChiselContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137699, 0, 0)
+
+[node name="RuneDetectArea" type="Area3D" parent="PhysicsChiselContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170693, 0, 0)
+collision_layer = 0
+collision_mask = 24577
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsChiselContainer/RuneDetectArea"]
 shape = SubResource("SphereShape3D_0ruxo")
 
-[node name="XRToolsGrabPointHand" type="Marker3D" parent="."]
+[node name="BreakArea" type="Area3D" parent="PhysicsChiselContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170693, 0, 0)
+collision_layer = 0
+collision_mask = 24704
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsChiselContainer/BreakArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213201, 0, 0)
+shape = SubResource("SphereShape3D_o45tt")
+
+[node name="XRToolsPickable" type="RigidBody3D" parent="."]
+top_level = true
+collision_layer = 65540
+collision_mask = 7
+script = ExtResource("1_suid3")
+picked_up_layer = 327692
+metadata/_custom_type_script = ExtResource("1_suid3")
+
+[node name="ToolCollision" type="CollisionShape3D" parent="XRToolsPickable"]
+shape = SubResource("ConvexPolygonShape3D_6l8po")
+
+[node name="XRToolsGrabPointHand" type="Marker3D" parent="XRToolsPickable"]
 transform = Transform3D(0.662542, 0.749025, 0, -0.749025, 0.662542, 0, 0, 0, 1, 0.0344455, 0.0203927, -0.0821882)
 script = ExtResource("4_mtskl")
 metadata/_custom_type_script = ExtResource("4_mtskl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_6l8po")
+[connection signal="body_entered" from="PhysicsChiselContainer/HammerArea" to="PhysicsChiselContainer/HammerArea" method="_on_body_entered"]
 
-[node name="Chisel2" parent="." instance=ExtResource("4_o45tt")]
-
-[connection signal="body_entered" from="HammerArea" to="HammerArea" method="_on_body_entered"]
-[connection signal="action_released" from="XRToolsGrabPointHand" to="." method="_on_xr_tools_grab_point_hand_action_released"]
-
-[editable path="Chisel2"]
+[editable path="PhysicsChiselContainer/Chisel2"]
