@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=32 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
 [ext_resource type="PackedScene" uid="uid://ccxxjdxanad7i" path="res://Player.tscn" id="3_4c57u"]
+[ext_resource type="Texture2D" uid="uid://et1u8y28sujq" path="res://images/AllSkyFree_Sky_EpicBlueSunset_Equirect.jpg" id="4_cegan"]
 [ext_resource type="PackedScene" uid="uid://b2q8j5joqb61m" path="res://scenes/basic_floor_blockout.tscn" id="4_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://m8ppw3hq3qjm" path="res://scenes/original_igloo.tscn" id="5_w48qg"]
 [ext_resource type="Texture2D" uid="uid://buuuwdedrsvgg" path="res://images/treelightcookie1.png" id="8_2cqfq"]
@@ -19,10 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://c2g55ovl013wd" path="res://resources/BlockoutDepression.glb" id="16_074og"]
 [ext_resource type="Texture2D" uid="uid://crgoctai5mx5r" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Roughness2.jpg" id="16_getpj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_82xsv"]
+panorama = ExtResource("4_cegan")
 
 [sub_resource type="Sky" id="Sky_lquwl"]
-sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
+sky_material = SubResource("PanoramaSkyMaterial_82xsv")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
