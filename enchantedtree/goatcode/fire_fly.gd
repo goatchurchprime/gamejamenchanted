@@ -7,6 +7,8 @@ var xzrange = 3.0
 var yrange = 0.5
 var xzmotion = 0.9
 var ymotion = 0.2
+var xzcollapse = 0.9
+
 @onready var flashphase = randf_range(0, 999)
 @onready var flashfac = randf_range(0.002, 0.006)
 @onready var flashoffs = randf_range(-0.2, 0.8) + 0.0
@@ -25,10 +27,14 @@ func _physics_process(delta):
 			clampf(position.x + randf_range(-xzmotion, xzmotion), -xzrange, xzrange), 
 			clampf(position.y + randf_range(-yrange, yrange), -ymotion, max(ymotion, position.y)), 
 			clampf(position.z + randf_range(-xzmotion, xzmotion), -xzrange, xzrange))
+		target = target*xzcollapse
 		look_at(get_parent().global_transform*target)
 		tvec = target - position
 		tdist = tvec.length()
-	var k = move_and_collide(tvec*(delta*flyvelocity*flyvecfac/tdist))
+		
+	var gtvec = get_parent().global_transform*tvec
+	var tvf = delta*flyvelocity*flyvecfac/tdist
+	var k = move_and_collide(tvec*tvf)
 	if k:
 		target = null
 	var ft = Time.get_ticks_msec()*flashfac + flashphase
