@@ -95,17 +95,7 @@ hand_skeleton = NodePath("LeftPhysicsHand/Hand_Nails_L/Armature/Skeleton3D")
 
 [node name="LeftPhysicsHand" parent="XRControllerLeft/XRToolsCollisionHand" instance=ExtResource("3_oudfo")]
 
-[node name="Skeleton3D" parent="XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand/Hand_Nails_L/Armature" index="0"]
-bones/1/rotation = Quaternion(0.323537, -2.56581e-05, -0.0272204, 0.945824)
-
-[node name="BoneRoot" parent="XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand/Hand_Nails_L/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -1.83077e-05, 1.5264e-08, 1.52677e-08, 0.00166774, 0.999999, -1.83077e-05, -0.999999, 0.00166774, 3.86425e-08, -1.86975e-05, 0.0271756)
-
-[node name="BoneRingMiddle" parent="XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand/Hand_Nails_L/Armature/Skeleton3D" index="15"]
-transform = Transform3D(0.772579, 0.634603, 0.0200164, 0.0794845, -0.127948, 0.98859, 0.629924, -0.762173, -0.149291, 0.000778394, -0.0314857, -0.111722)
-
 [node name="AnimationTree" parent="XRControllerLeft/XRToolsCollisionHand/LeftPhysicsHand" index="1"]
-root_node = NodePath("../Hand_Nails_L")
 tree_root = SubResource("AnimationNodeBlendTree_2n1s8")
 
 [node name="HandLight" type="OmniLight3D" parent="XRControllerLeft/XRToolsCollisionHand"]
