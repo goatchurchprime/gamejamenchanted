@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btmit5ngynkqv"]
+[gd_scene load_steps=9 format=3 uid="uid://btmit5ngynkqv"]
 
 [ext_resource type="Script" uid="uid://cwkgsrc5efaxq" path="res://goatcode/fire_fly.gd" id="1_g0mfo"]
 
@@ -7,15 +7,24 @@ radius = 0.03
 height = 0.12
 
 [sub_resource type="BoxMesh" id="BoxMesh_074og"]
-size = Vector3(0.005, 0.005, 0.02)
+size = Vector3(0.005, 0.005, 0.025)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cegan"]
 albedo_color = Color(0.176419, 0.176419, 0.176419, 1)
 metallic = 0.55
 roughness = 0.28
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g0mfo"]
+radius = 0.003
+height = 0.012
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k27k2"]
+albedo_color = Color(0.176471, 0.176471, 0.603922, 1)
+metallic = 0.55
+roughness = 0.28
+
 [sub_resource type="BoxMesh" id="BoxMesh_82xsv"]
-size = Vector3(0.007, 0.007, 0.01)
+size = Vector3(0.007, 0.004, 0.003)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_getpj"]
 resource_local_to_scene = true
@@ -23,6 +32,7 @@ shading_mode = 0
 albedo_color = Color(1, 1, 0.207843, 1)
 
 [node name="FireFly" type="RigidBody3D"]
+transform = Transform3D(0.999633, 0, -0.0270842, 0, 1, 0, 0.0270842, 0, 0.999633, 0, 0, 0)
 collision_layer = 131072
 collision_mask = 131073
 freeze = true
@@ -36,12 +46,27 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CapsuleShape3D_yaehf")
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, -0.0298997)
+transform = Transform3D(5, 0, 0, 0, 4.95959, 0.634371, 0, -0.634371, 4.95959, 0, 0.00248706, -0.00996401)
 mesh = SubResource("BoxMesh_074og")
 surface_material_override/0 = SubResource("StandardMaterial3D_cegan")
 
+[node name="Eyes" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -0.00149795, 0.00248706, -0.0652508)
+mesh = SubResource("CapsuleMesh_g0mfo")
+surface_material_override/0 = SubResource("StandardMaterial3D_k27k2")
+
 [node name="Glow" type="MeshInstance3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.00211293, 0.00920069)
+mesh = SubResource("BoxMesh_82xsv")
+surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
+
+[node name="Glow2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.00211293, 0.0278268)
+mesh = SubResource("BoxMesh_82xsv")
+surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
+
+[node name="Glow3" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.00211293, 0.0475617)
 mesh = SubResource("BoxMesh_82xsv")
 surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
 
