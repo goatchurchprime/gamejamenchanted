@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccxxjdxanad7i"]
+[gd_scene load_steps=25 format=3 uid="uid://ccxxjdxanad7i"]
 
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="1_3tkgg"]
+[ext_resource type="Script" uid="uid://disjsd7kfoopl" path="res://addons/godot-xr-tools/functions/movement_footstep.gd" id="1_jatw7"]
 [ext_resource type="PackedScene" uid="uid://yrg5yt0yvc1q" path="res://addons/godot-xr-tools/hands/scenes/collision/collision_hand.tscn" id="2_l6ohk"]
+[ext_resource type="Script" uid="uid://bklb11ac3gg68" path="res://addons/godot-xr-tools/audio/surface_audio_type.gd" id="2_rv870"]
 [ext_resource type="PackedScene" uid="uid://wtpox7m5vu2b" path="res://addons/godot-xr-tools/effects/fade.tscn" id="3_d6rpx"]
+[ext_resource type="AudioStream" uid="uid://dkoyjpgqoicu7" path="res://sounds/Fantozzi-footsteps/ogg/Fantozzi-SandR1.ogg" id="3_efikj"]
 [ext_resource type="PackedScene" uid="uid://cy03d57iyrci" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_physics_hand.tscn" id="3_oudfo"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_d6rpx"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="5_r3kul"]
@@ -13,6 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="10_cgsek"]
 [ext_resource type="PackedScene" uid="uid://2h8mjimpo5ra" path="res://addons/xr-radialmenu/XRNodeAim.tscn" id="11_0pi4m"]
 [ext_resource type="PackedScene" uid="uid://b228p8k6sonve" path="res://addons/godot-xr-tools/player/fade/fade_collision.tscn" id="12_l6ohk"]
+
+[sub_resource type="Resource" id="Resource_jatw7"]
+script = ExtResource("2_rv870")
+name = ""
+walk_sounds = Array[AudioStream]([ExtResource("3_efikj")])
+walk_pitch_minimum = 0.8
+walk_pitch_maximum = 1.2
+metadata/_custom_type_script = ExtResource("2_rv870")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oudfo"]
 animation = &"Grip"
@@ -49,6 +60,15 @@ node_connections = [&"Grip", 0, &"Trigger", &"Grip", 1, &"ClosedHand2", &"Trigge
 size = Vector2(0.5, 0.5)
 
 [node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRToolsMovementFootstep" type="Node" parent="." groups=["movement_providers"]]
+script = ExtResource("1_jatw7")
+default_surface_audio_type = SubResource("Resource_jatw7")
+metadata/_custom_type_script = ExtResource("1_jatw7")
+
+[node name="PlayerSettings" type="AudioStreamPlayer3D" parent="XRToolsMovementFootstep"]
+stream = ExtResource("3_efikj")
+volume_db = -29.411
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.967468, 0)
