@@ -1,12 +1,8 @@
-[gd_scene load_steps=37 format=4 uid="uid://b786s0bbi70u1"]
+[gd_scene load_steps=30 format=4 uid="uid://b786s0bbi70u1"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_d4o4o"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_gdsc3"]
 [ext_resource type="PackedScene" uid="uid://ccxxjdxanad7i" path="res://Player.tscn" id="3_svejp"]
-[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="4_36gju"]
-[ext_resource type="Texture2D" uid="uid://lvtu4r47cr1t" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Color2.jpg" id="5_tql22"]
-[ext_resource type="Texture2D" uid="uid://dggndb8vfmgar" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_NormalGL2.jpg" id="6_jbdfk"]
-[ext_resource type="Texture2D" uid="uid://crgoctai5mx5r" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Roughness2.jpg" id="7_4gl14"]
 [ext_resource type="LightmapGIData" uid="uid://dt2etr64tl3qr" path="res://bakedstuff/main.lmbake" id="8_5g7v7"]
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="8_isujw"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="9_hk4ms"]
@@ -21,21 +17,6 @@ sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
 sky = SubResource("Sky_lquwl")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2cqfq"]
-height = 0.2
-radius = 0.1
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_yaehf"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
-albedo_texture = ExtResource("5_tql22")
-roughness_texture = ExtResource("7_4gl14")
-normal_enabled = true
-normal_texture = ExtResource("6_jbdfk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
 shading_mode = 0
@@ -165,24 +146,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183296, -2.24788)
 use_collision = true
 size = Vector3(1, 1.2, 1)
 
-[node name="PickableObject2" parent="Stump" instance=ExtResource("4_36gju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280649, 0.979077, -0.200284)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Stump/PickableObject2"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_2cqfq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Stump/PickableObject2"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_yaehf")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_ryguw")
-
 [node name="Chisel" parent="Stump" instance=ExtResource("8_isujw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.827296, 0.427045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151449, 1.21663, 0.716944)
+
+[node name="Chisel2" parent="Stump" instance=ExtResource("8_isujw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.151449, 0.827296, 0.26932)
 
 [node name="Hammer" parent="Stump" instance=ExtResource("9_hk4ms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.309717, 0.990592, 0.208023)
+enabled = true
+press_to_hold = true
+picked_up_layer = 65536
+release_mode = -1
+ranged_grab_method = 1
+second_hand_grab = 0
+ranged_grab_speed = 20.0
+picked_by_exclude = ""
+picked_by_require = ""
 
 [node name="CandleLightIgloo" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20217, 0.565975, -12.0334)
@@ -211,6 +191,8 @@ mesh = SubResource("CylinderMesh_dg77c")
 [node name="Floor" type="CSGBox3D" parent="CSGBlockout/OrgModels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1.43406)
 use_collision = true
+collision_layer = 9
+collision_mask = 9
 size = Vector3(30, 1, 40)
 material = SubResource("StandardMaterial3D_272bh")
 
