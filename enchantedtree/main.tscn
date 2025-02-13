@@ -137,7 +137,7 @@ autostart = true
 
 [node name="FireFly" parent="FireFlies/FlyList" instance=ExtResource("10_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.361655, 0)
-flyvelocity = 0.02
+flyvelocity = 10.02
 
 [node name="BugSquelch" type="AudioStreamPlayer3D" parent="FireFlies"]
 stream = ExtResource("11_074og")

@@ -33,7 +33,6 @@ shading_mode = 0
 albedo_color = Color(1, 1, 0.207843, 1)
 
 [node name="FireFly" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 131072
 collision_mask = 131073
 freeze = true
