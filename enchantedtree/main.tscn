@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
 [ext_resource type="PackedScene" uid="uid://ccxxjdxanad7i" path="res://Player.tscn" id="3_4c57u"]
 [ext_resource type="Texture2D" uid="uid://et1u8y28sujq" path="res://images/AllSkyFree_Sky_EpicBlueSunset_Equirect.jpg" id="4_cegan"]
+[ext_resource type="Texture2D" uid="uid://wqw2xmdoe8u4" path="res://images/cockshadow2.tres" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://buuuwdedrsvgg" path="res://images/treelightcookie1.png" id="8_2cqfq"]
 [ext_resource type="Script" uid="uid://cbnaj04x78dhl" path="res://goatcode/fire_flies.gd" id="9_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://btmit5ngynkqv" path="res://goatcode/fire_fly.tscn" id="10_yaehf"]
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
-[ext_resource type="Texture2D" uid="uid://lvtu4r47cr1t" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Color2.jpg" id="14_cegan"]
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
 [ext_resource type="Texture2D" uid="uid://dggndb8vfmgar" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_NormalGL2.jpg" id="15_82xsv"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="15_yaehf"]
@@ -31,6 +31,16 @@ glow_blend_mode = 0
 fog_enabled = true
 fog_sky_affect = 0.353
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0.0196078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dg77c"]
+material = SubResource("StandardMaterial3D_efxa6")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.05
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2cqfq"]
 height = 0.2
 radius = 0.1
@@ -41,20 +51,9 @@ bottom_radius = 0.1
 height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
-albedo_texture = ExtResource("14_cegan")
 roughness_texture = ExtResource("16_getpj")
 normal_enabled = true
 normal_texture = ExtResource("15_82xsv")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
-shading_mode = 0
-albedo_color = Color(1, 1, 0.0196078, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dg77c"]
-material = SubResource("StandardMaterial3D_efxa6")
-top_radius = 0.02
-bottom_radius = 0.02
-height = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_074og"]
 resource_name = "Material.003"
@@ -101,7 +100,28 @@ shadow_enabled = true
 shadow_caster_mask = 4293918722
 spot_range = 80.0
 spot_angle = 30.0
-spot_angle_attenuation = 0.0669859
+spot_angle_attenuation = 0.0291573
+
+[node name="SpotLightIntoTree" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.555921, -0.0829559, 0.827086, 0.323945, 0.894716, 0.307477, -0.765514, 0.438864, -0.470518, -1.38449, 11.4907, -46.4782)
+light_color = Color(0.67451, 1, 1, 1)
+light_energy = 100.0
+light_projector = ExtResource("6_vivmo")
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 14.2247
+spot_angle_attenuation = 0.0281641
+
+[node name="CandleLightConetree" type="OmniLight3D" parent="."]
+transform = Transform3D(1, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0, 2.98023e-08, -8.88178e-16, 1, -7.09674, 3.29294, -42.8463)
+light_color = Color(1, 1, 0.0784314, 1)
+light_energy = 1.696
+light_bake_mode = 1
+omni_range = 6.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CandleLightConetree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
+mesh = SubResource("CylinderMesh_dg77c")
 
 [node name="FireFlies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.553757, 1.35127, -2.05955)
@@ -152,18 +172,6 @@ mesh = SubResource("CylinderMesh_yaehf")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ryguw")
 
-[node name="CandleLightConetree" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.122, 0.624245, 16.575)
-visible = false
-light_color = Color(1, 1, 0.0784314, 1)
-light_energy = 1.696
-light_bake_mode = 1
-omni_range = 6.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CandleLightConetree"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
-mesh = SubResource("CylinderMesh_dg77c")
-
 [node name="TaviBlockouts" type="Node3D" parent="."]
 
 [node name="BlockoutDepression" parent="TaviBlockouts" instance=ExtResource("16_074og")]
@@ -208,6 +216,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4935, 0.84815, -2.0128)
 
 [node name="Hammer" parent="DomiTools" instance=ExtResource("15_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.148918, 0.886228, -1.98565)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
 
 [connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
 
