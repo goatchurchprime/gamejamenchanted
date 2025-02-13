@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 			# Reduce the time remaining
 			haptic_queue.time_remaining[key] -= delta_ms
 
-			# If it's of greater magnitude, update left magnitude to be set
+			# If it's of great			XRServer.primary_interfaceer magnitude, update left magnitude to be set
 			if event.magnitude > magnitude:
 				magnitude = event.magnitude
 
@@ -100,7 +100,7 @@ func _process(delta: float) -> void:
 		magnitude *= XRToolsUserSettings.haptics_scale
 
 		# Make that tracker rumble
-		if magnitude > 0:
+		if magnitude > 0 and XRServer.primary_interface:
 			XRServer.primary_interface.trigger_haptic_pulse(
 				HAPTIC_ACTION,
 				tracker_name, # if the tracker name isn't valid, it will error but continue

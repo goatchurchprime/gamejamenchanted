@@ -22,6 +22,7 @@ func _on_timer_timeout():
 	elif $FlyList.get_child_count() > nmaxfireflies:
 		$FlyList.get_child(0).queue_free()
 
+
 var activehandlighttweens = { }
 func sethandlightoff(handlight):
 	handlight.visible = false
