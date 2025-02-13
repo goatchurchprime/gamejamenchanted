@@ -3,6 +3,7 @@ extends Node3D
 var nmaxfireflies = 0
 var fireflyspawnaltitude = 1.5
 var fireflyspawnrad = 1
+var fireflyxzrange = 1.3
 
 var Ddevmode = true
 func _ready():
@@ -18,6 +19,7 @@ func _on_timer_timeout():
 	if $FlyList.get_child_count() < nmaxfireflies:
 		var newfly = load("res://goatcode/fire_fly.tscn").instantiate()
 		newfly.position = Vector3(randf_range(-fireflyspawnrad, fireflyspawnrad), fireflyspawnaltitude, randf_range(-fireflyspawnrad, fireflyspawnrad))
+		newfly.xzrange = fireflyxzrange
 		$FlyList.add_child(newfly)
 	elif $FlyList.get_child_count() > nmaxfireflies:
 		$FlyList.get_child(0).queue_free()

@@ -51,7 +51,7 @@ mesh = SubResource("BoxMesh_074og")
 surface_material_override/0 = SubResource("StandardMaterial3D_cegan")
 
 [node name="Eyes" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -0.00149795, 0.00248706, -0.0652508)
+transform = Transform3D(-2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 4.44089e-16, 0, 5, -0.00149795, 0.00392657, -0.0652508)
 mesh = SubResource("CapsuleMesh_g0mfo")
 surface_material_override/0 = SubResource("StandardMaterial3D_k27k2")
 

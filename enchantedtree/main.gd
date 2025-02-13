@@ -26,12 +26,32 @@ func set_fade(p_value : float):
 	XRToolsFade.set_fade("teleport", Color(0.03, 0.03, 0.1, p_value))
 
 func getyouintothetree():
+	$XROrigin3D/XRControllerLeft/XRToolsCollisionHand/HandLight.visible = false
+	$XROrigin3D/XRControllerRight/XRToolsCollisionHand/HandLight.visible = false
 	var tween = get_tree().create_tween()
-	tween.tween_method(set_fade, 0.0, 1.0, 0.3)
+	var fadeto = 0.7
+	tween.tween_method(set_fade, 0.0, fadeto, 0.3)
 	await tween.finished
 	tween.kill()
 	var treecentretrans = find_child("PosIntoTree").global_transform
-	$XROrigin3D/PlayerBody.teleport(treecentretrans)
+	
+	# rapid drawing into the tree
+	var ao = $XROrigin3D/PlayerBody.global_transform.origin + Vector3(0,0.5,0)
+	var bgravity = $XROrigin3D/PlayerBody.gravity
+	$XROrigin3D/MovementFlight.enabled = true
+	$XROrigin3D/MovementDesktopFlight.enabled = true
+	$XROrigin3D/MovementGravityZones.enabled = true
+	for i in range(11):
+		$XROrigin3D/PlayerBody.teleport(Transform3D(treecentretrans.basis, lerp(ao, treecentretrans.origin, i/10.0)))
+		$XROrigin3D/XRControllerLeft.trigger_haptic_pulse(&"haptic",0,i/10.0,0.09,0)
+		$XROrigin3D/XRControllerRight.trigger_haptic_pulse(&"haptic",0,i/10.0,0.09,0)
+		$XROrigin3D/TeleportToTreesound.play()
+		await get_tree().create_timer(0.2).timeout
+	#$XROrigin3D/PlayerBody.teleport(treecentretrans)
+	$XROrigin3D/MovementGravityZones.enabled = false
+	$XROrigin3D/MovementFlight.enabled = false
+	$XROrigin3D/MovementDesktopFlight.enabled = false
+
 	$FireFlies.position = treecentretrans.origin
 	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
 	$FireFlies.nmaxfireflies = 10
@@ -40,7 +60,7 @@ func getyouintothetree():
 	$WorldEnvironment/DirectionalLight3D.visible = false
 	$WorldEnvironment.environment.background_energy_multiplier = 0.09
 	tween = get_tree().create_tween()
-	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
+	tween.tween_method(set_fade, fadeto, 0.0, 1.0)
 	await tween.finished
 
 func getyoutothespawnpoint():
