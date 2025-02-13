@@ -23,15 +23,6 @@ points = PackedVector3Array(0.00652023, 0.0323951, 0.00603156, 0.0370805, 0.0760
 collision_layer = 65540
 collision_mask = 196615
 script = ExtResource("1_iaoc5")
-enabled = null
-press_to_hold = null
-picked_up_layer = null
-release_mode = null
-ranged_grab_method = null
-second_hand_grab = null
-ranged_grab_speed = null
-picked_by_exclude = null
-picked_by_require = null
 metadata/_custom_type_script = ExtResource("2_u3ffv")
 
 [node name="Hammer2" parent="." instance=ExtResource("3_u3ffv")]
