@@ -82,7 +82,7 @@ current = true
 
 [node name="FadeCollision" parent="XRCamera3D" instance=ExtResource("12_l6ohk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.967468, 0)
-fade_color = Color(0.541642, 0.629925, 3.85046e-07, 1)
+fade_color = Color(0.507621, 0.0241097, 0.105923, 1)
 
 [node name="Fade" parent="XRCamera3D" instance=ExtResource("3_d6rpx")]
 
@@ -182,6 +182,7 @@ tree_root = SubResource("AnimationNodeBlendTree_47wu6")
 
 [node name="HandLight" type="OmniLight3D" parent="XRControllerLeft/XRToolsCollisionHand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140342, -0.0433026, 0.0940291)
+visible = false
 light_color = Color(0.631373, 0.996078, 0.0745098, 1)
 shadow_enabled = true
 shadow_bias = 0.01
@@ -206,6 +207,7 @@ tracker = &"right_hand"
 
 [node name="HandLight" type="OmniLight3D" parent="XRControllerRight/XRToolsCollisionHand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0185846, -0.0433026, 0.0940291)
+visible = false
 light_color = Color(0.631373, 0.996078, 0.0745098, 1)
 shadow_enabled = true
 shadow_bias = 0.3

@@ -46,3 +46,5 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 			if swatvelocity < -0.3:
 				get_parent().get_parent().sethandlighton(handlight)
 				queue_free()
+			elif swatvelocity > 0.2:
+				flyvecfac = 0.2

@@ -36,6 +36,7 @@ func getyouintothetree():
 	var treecentretrans = find_child("PosIntoTree").global_transform
 	
 	# rapid drawing into the tree
+	#$XROrigin3D/PlayerBody.teleport(treecentretrans)
 	var ao = $XROrigin3D/PlayerBody.global_transform.origin + Vector3(0,0.5,0)
 	var bgravity = $XROrigin3D/PlayerBody.gravity
 	$XROrigin3D/MovementFlight.enabled = true
@@ -47,7 +48,6 @@ func getyouintothetree():
 		$XROrigin3D/XRControllerRight.trigger_haptic_pulse(&"haptic",0,i/10.0,0.09,0)
 		$XROrigin3D/TeleportToTreesound.play()
 		await get_tree().create_timer(0.2).timeout
-	#$XROrigin3D/PlayerBody.teleport(treecentretrans)
 	$XROrigin3D/MovementGravityZones.enabled = false
 	$XROrigin3D/MovementFlight.enabled = false
 	$XROrigin3D/MovementDesktopFlight.enabled = false
