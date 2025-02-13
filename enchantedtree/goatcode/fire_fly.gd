@@ -12,6 +12,9 @@ var ymotion = 0.2
 @onready var flashoffs = randf_range(-0.2, 0.8) + 0.0
 @onready var flyvecfac = randf_range(0.5, 1.2)*0.5
 
+func _ready():
+	$firefly/firefly/AnimationPlayer.play("firefly_fly")
+
 var rec_physdelta = 0.001
 func _physics_process(delta):
 	rec_physdelta = delta
@@ -31,6 +34,7 @@ func _physics_process(delta):
 	var ft = Time.get_ticks_msec()*flashfac + flashphase
 	var fg = sin(ft) + flashoffs
 	$Glow.get_surface_override_material(0).albedo_color = Color.YELLOW * clamp(fg, 0, 1)
+	$firefly/firefly/Firefly.get_surface_override_material(1).albedo_color = Color.YELLOW * clamp(fg, 0, 1)
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body is XRToolsCollisionHand:

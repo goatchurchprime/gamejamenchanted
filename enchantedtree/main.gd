@@ -8,7 +8,7 @@ func getcontextmenutexts():
 			 "intotree", "spawnpt", "togglebloom", 
 			"cock1" ]
 
-var Ddebugmode = true
+var Ddebugmode = false
 
 func radialmenuitem(menutext):
 	if menutext == "togglecandle":
