@@ -130,14 +130,15 @@ mesh = SubResource("PrismMesh_yaehf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.553757, 1.35127, -2.05955)
 script = ExtResource("9_2cqfq")
 
-[node name="FireFly" parent="FireFlies" instance=ExtResource("10_yaehf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.66417, 0)
-
 [node name="Timer" type="Timer" parent="FireFlies"]
-wait_time = 4.0
+wait_time = 2.0
 autostart = true
 
 [node name="FlyList" type="Node3D" parent="FireFlies"]
+
+[node name="FireFly" parent="FireFlies/FlyList" instance=ExtResource("10_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.361655, 0)
+flyvelocity = 0.02
 
 [node name="Stump" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0183296, -2.24788)

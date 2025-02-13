@@ -30,8 +30,13 @@ func getyouintothetree():
 	tween.tween_method(set_fade, 0.0, 1.0, 0.3)
 	await tween.finished
 	tween.kill()
-
-	$XROrigin3D/PlayerBody.teleport(find_child("PosIntoTree").global_transform)
+	var treecentretrans = find_child("PosIntoTree").global_transform
+	$XROrigin3D/PlayerBody.teleport(treecentretrans)
+	$FireFlies.position = treecentretrans.origin
+	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
+	$FireFlies.nmaxfireflies = 10
+	for f in $FireFlies/FlyList.get_children():
+		f.queue_free()
 	$WorldEnvironment/DirectionalLight3D.visible = false
 	$WorldEnvironment.environment.background_energy_multiplier = 0.09
 	tween = get_tree().create_tween()
@@ -45,6 +50,8 @@ func getyoutothespawnpoint():
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
+	$XROrigin3D/XRControllerLeft/XRToolsCollisionHand/HandLight.visible = false
+	$XROrigin3D/XRControllerRight/XRToolsCollisionHand/HandLight.visible = false
 
 func _process(delta):
 	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)

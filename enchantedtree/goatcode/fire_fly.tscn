@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cwkgsrc5efaxq" path="res://goatcode/fire_fly.gd" id="1_g0mfo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yaehf"]
-radius = 0.002
-height = 0.01
+radius = 0.03
+height = 0.12
 
 [sub_resource type="BoxMesh" id="BoxMesh_074og"]
 size = Vector3(0.005, 0.005, 0.02)
@@ -23,11 +23,16 @@ shading_mode = 0
 albedo_color = Color(1, 1, 0.207843, 1)
 
 [node name="FireFly" type="RigidBody3D"]
+collision_layer = 131072
+collision_mask = 131073
 freeze = true
 freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_g0mfo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.0166028)
 shape = SubResource("CapsuleShape3D_yaehf")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -39,3 +44,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_cegan")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.00211293, 0.00920069)
 mesh = SubResource("BoxMesh_82xsv")
 surface_material_override/0 = SubResource("StandardMaterial3D_getpj")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
