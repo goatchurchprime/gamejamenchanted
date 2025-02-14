@@ -15,7 +15,10 @@ func radialmenuitem(menutext):
 		$InsideTreeStuff/CandleLightConetree.visible = not $InsideTreeStuff/CandleLightConetree.visible
 	elif menutext == "toggleshadow":
 		#$CandleLight.shadow_enabled = not $CandleLight.shadow_enabled
-		$WorldEnvironment/DirectionalLight3D.shadow_enabled = not $WorldEnvironment/DirectionalLight3D.shadow_enabled
+		var vv = $WorldEnvironment/DirectionalLight3D.shadow_enabled
+		$WorldEnvironment/DirectionalLight3D.shadow_enabled = not vv
+		$SpotLightIntoTree.visible = vv
+
 	elif menutext == "togglebloom":
 		$WorldEnvironment.environment.glow_enabled = not $WorldEnvironment.environment.glow_enabled
 	elif menutext == "intotree":

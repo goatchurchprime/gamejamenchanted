@@ -12,7 +12,7 @@ var xzcollapse = 0.9
 @onready var flashphase = randf_range(0, 999)
 @onready var flashfac = randf_range(0.002, 0.006)
 @onready var flashoffs = randf_range(-0.2, 0.8) + 0.0
-@onready var flyvecfac = randf_range(0.5, 1.2)*0.5
+@onready var flyvecfac = randf_range(0.5, 1.2)
 
 func _ready():
 	$firefly/firefly/AnimationPlayer.play("firefly_fly")
