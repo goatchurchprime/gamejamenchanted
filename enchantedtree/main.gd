@@ -12,7 +12,7 @@ var Ddebugmode = true
 
 func radialmenuitem(menutext):
 	if menutext == "togglecandle":
-		$CandleLightConetree.visible = not $CandleLightConetree.visible
+		$InsideTreeStuff/CandleLightConetree.visible = not $InsideTreeStuff/CandleLightConetree.visible
 	elif menutext == "toggleshadow":
 		#$CandleLight.shadow_enabled = not $CandleLight.shadow_enabled
 		$WorldEnvironment/DirectionalLight3D.shadow_enabled = not $WorldEnvironment/DirectionalLight3D.shadow_enabled
@@ -74,10 +74,13 @@ func getyouintothetree():
 
 func getyoutothespawnpoint():
 	$Cockatrice.visible = false
+	$TaviBlockouts/BlockoutDepression/Cube.visible = true
 	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = true
 	$WorldEnvironment.environment.background_energy_multiplier = 1.0
+	for f in $FireFlies/FlyList.get_children():
+		f.queue_free()
 	var tween = get_tree().create_tween()
 	tween.tween_method(set_fade, 1.0, 0.0, 1.0)
 	await tween.finished
@@ -107,7 +110,7 @@ func cock2attack():
 	
 
 func _process(delta):
-	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
+	$InsideTreeStuff/CandleLightConetree.light_energy = clamp($InsideTreeStuff/CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
