@@ -10,5 +10,5 @@ func _ready():
 	xr_tools_pickable.global_transform = global_transform
 
 func _physics_process(delta: float) -> void:
+	#print(xr_tools_pickable.global_transform.origin.y)
 	physics_chisel_container.global_transform = xr_tools_pickable.global_transform
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbhbxx871gscn"]
+[gd_scene load_steps=14 format=3 uid="uid://dbhbxx871gscn"]
 
 [ext_resource type="Script" uid="uid://dcyq7kyuylstx" path="res://Tools/Chisel/chisel.gd" id="1_0ruxo"]
 [ext_resource type="Script" uid="uid://6kmn3ox5u8mt" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_suid3"]
@@ -20,6 +20,15 @@ radius = 0.151925
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o45tt"]
 radius = 0.0376924
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o45tt"]
+size = Vector3(0.2, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o45tt"]
+size = Vector3(0.02, 30, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6l8po"]
+albedo_color = Color(1, 0.0862745, 1, 1)
 
 [node name="Chisel" type="Node3D"]
 script = ExtResource("1_0ruxo")
@@ -77,19 +86,24 @@ shape = SubResource("SphereShape3D_o45tt")
 
 [node name="XRToolsPickable" type="RigidBody3D" parent="."]
 top_level = true
-collision_layer = 65540
+collision_layer = 65541
 collision_mask = 7
+continuous_cd = true
 script = ExtResource("1_suid3")
 picked_up_layer = 327692
 metadata/_custom_type_script = ExtResource("1_suid3")
 
-[node name="ToolCollision" type="CollisionShape3D" parent="XRToolsPickable"]
-shape = SubResource("ConvexPolygonShape3D_6l8po")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRToolsPickable"]
+shape = SubResource("BoxShape3D_o45tt")
 
 [node name="XRToolsGrabPointHand" type="Marker3D" parent="XRToolsPickable"]
 transform = Transform3D(0.662542, 0.749025, 0, -0.749025, 0.662542, 0, 0, 0, 1, 0.0344455, 0.0203927, -0.0821882)
 script = ExtResource("4_mtskl")
 metadata/_custom_type_script = ExtResource("4_mtskl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRToolsPickable"]
+mesh = SubResource("BoxMesh_o45tt")
+surface_material_override/0 = SubResource("StandardMaterial3D_6l8po")
 
 [connection signal="body_entered" from="PhysicsChiselContainer/HammerArea" to="PhysicsChiselContainer/HammerArea" method="_on_body_entered"]
 

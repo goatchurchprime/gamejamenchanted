@@ -22,6 +22,7 @@ points = PackedVector3Array(0.00652023, 0.0323951, 0.00603156, 0.0370805, 0.0760
 [node name="Hammer" type="RigidBody3D"]
 collision_layer = 65540
 collision_mask = 196615
+continuous_cd = true
 script = ExtResource("1_iaoc5")
 metadata/_custom_type_script = ExtResource("2_u3ffv")
 

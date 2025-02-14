@@ -217,13 +217,12 @@ mesh = SubResource("PrismMesh_yaehf")
 skeleton = NodePath("")
 
 [node name="DomiTools" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02646, 0)
 
 [node name="Chisel" parent="DomiTools" instance=ExtResource("14_vivmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205577, 0.84815, -2.0128)
+transform = Transform3D(0.934981, -0.354699, 0, 0.354699, 0.934981, 0, 0, 0, 1, -0.205577, 2.08097, -2.0128)
 
 [node name="Hammer" parent="DomiTools" instance=ExtResource("15_yaehf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199881, 0.886228, -1.98565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199881, 1.76759, -1.98565)
 collision_layer = 98308
 collision_mask = 229383
 
