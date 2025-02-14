@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ccxxjdxanad7i" path="res://Player.tscn" id="3_4c57u"]
 [ext_resource type="Texture2D" uid="uid://et1u8y28sujq" path="res://images/AllSkyFree_Sky_EpicBlueSunset_Equirect.jpg" id="4_cegan"]
 [ext_resource type="Texture2D" uid="uid://wqw2xmdoe8u4" path="res://images/cockshadow2.tres" id="6_vivmo"]
-[ext_resource type="Texture2D" uid="uid://buuuwdedrsvgg" path="res://images/treelightcookie1.png" id="8_2cqfq"]
 [ext_resource type="Script" uid="uid://cbnaj04x78dhl" path="res://goatcode/fire_flies.gd" id="9_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://qo7618ftcfpt" path="res://Tools/Chisel/Breakable.tscn" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="10_4c57u"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
 [ext_resource type="Texture2D" uid="uid://dggndb8vfmgar" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_NormalGL2.jpg" id="15_82xsv"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="15_yaehf"]
+[ext_resource type="PackedScene" uid="uid://c88sum30u4txd" path="res://scenes/cockatrice.tscn" id="16_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c2g55ovl013wd" path="res://resources/BlockoutDepression.glb" id="16_074og"]
 [ext_resource type="Texture2D" uid="uid://crgoctai5mx5r" path="res://images/Wood075_1K-JPG/Wood075_1K-JPG_Roughness2.jpg" id="16_getpj"]
 
@@ -91,17 +91,6 @@ environment = SubResource("Environment_h2yge")
 transform = Transform3D(0.915601, -0.0684536, 0.396218, -0.277589, 0.605284, 0.74604, -0.290894, -0.79306, 0.535197, 5.11836, 27.1998, -6.56419)
 light_energy = 2.778
 shadow_enabled = true
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-0.558753, -0.733172, 0.387626, -0.636718, 0.678725, 0.365956, -0.5314, -0.0423298, -0.846063, 4.47471, 15.1102, 5.45465)
-visible = false
-light_energy = 800.0
-light_projector = ExtResource("8_2cqfq")
-shadow_enabled = true
-shadow_caster_mask = 4293918722
-spot_range = 80.0
-spot_angle = 30.0
-spot_angle_attenuation = 0.0291573
 
 [node name="SpotLightIntoTree" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.555921, -0.0829559, 0.827086, 0.323945, 0.894716, 0.307477, -0.765514, 0.438864, -0.470518, -1.38449, 11.4907, -46.4782)
@@ -225,6 +214,9 @@ transform = Transform3D(0.934981, -0.354699, 0, 0.354699, 0.934981, 0, 0, 0, 1, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199881, 1.76759, -1.98565)
 collision_layer = 98308
 collision_mask = 229383
+
+[node name="Cockatrice" parent="." instance=ExtResource("16_2cqfq")]
+transform = Transform3D(-0.0644663, -0.256714, 0.964335, -0.119335, 0.961394, 0.247953, -0.990759, -0.0990943, -0.0926124, -1.07201, 2.37634, -41.6738)
 
 [connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
 

@@ -6,9 +6,9 @@ func _ready() -> void:
 func getcontextmenutexts():
 	return [ "togglecandle", "toggleshadow", 
 			 "intotree", "spawnpt", "togglebloom", 
-			"cock1" ]
+			 "cock1", "cock2" ]
 
-var Ddebugmode = false
+var Ddebugmode = true
 
 func radialmenuitem(menutext):
 	if menutext == "togglecandle":
@@ -24,6 +24,8 @@ func radialmenuitem(menutext):
 		getyoutothespawnpoint()
 	elif menutext == "cock1":
 		cock1shadow()
+	elif menutext == "cock2":
+		cock2attack()
 	else:
 		printerr("Unknown menu item ", menutext)
 		
@@ -71,6 +73,8 @@ func getyouintothetree():
 	await tween.finished
 
 func getyoutothespawnpoint():
+	$Cockatrice.visible = false
+	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = true
 	$WorldEnvironment.environment.background_energy_multiplier = 1.0
@@ -89,7 +93,15 @@ func cock1shadow():
 		$SpotLightIntoTree.light_projector = load("res://images/cockshadow1.tres")
 		await get_tree().create_timer(0.5).timeout
 	
-		
+func cock2attack():
+	$Cockatrice.visible = true
+	$Cockatrice/AnimationPlayer.play("move1")
+	$TaviBlockouts/BlockoutDepression/Cube.visible = false
+	await get_tree().create_timer(5.0).timeout
+	$TaviBlockouts/BlockoutDepression/Cube.visible = true
+	$Cockatrice.visible = false
+	$Cockatrice/AnimationPlayer.stop()
+	
 
 func _process(delta):
 	$CandleLightConetree.light_energy = clamp($CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
@@ -104,4 +116,6 @@ func _input(event):
 			radialmenuitem("togglecandle")
 		if event.keycode == KEY_B:
 			radialmenuitem("togglebloom")
+		if event.keycode == KEY_K:
+			radialmenuitem("cock2")
 		
