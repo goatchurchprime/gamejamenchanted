@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b45juegdh0878"]
+
+[ext_resource type="PackedScene" uid="uid://dhba8bwncltej" path="res://assets/imports/environment/flora/EA_Swamp_BrokenTree_01a.fbx" id="1_ljl8y"]
+[ext_resource type="Material" uid="uid://pplksw06rxwy" path="res://assets/imports/materials/EA_Colorsheet.material" id="2_stjp4"]
+
+[node name="EA_Swamp_BrokenTree_01a" instance=ExtResource("1_ljl8y")]
+
+[node name="EA_Swamp_BrokenTree_01a" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_stjp4")

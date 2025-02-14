@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bquh1bnychfoh"]
+
+[ext_resource type="PackedScene" uid="uid://xj3kca7uxd3q" path="res://assets/imports/environment/flora/Conifer.glb" id="1_w407q"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w407q"]
+height = 6.965
+
+[node name="Conifer" type="Node3D"]
+
+[node name="Conifer" parent="." instance=ExtResource("1_w407q")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Conifer/Trunk" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Conifer/Trunk/StaticBody3D"]
+transform = Transform3D(2.71, 0, 0, 0, 2.71, 0, 0, 0, 2.71, -0.000463853, 8.35124, -0.0297461)
+shape = SubResource("CylinderShape3D_w407q")
+
+[editable path="Conifer"]

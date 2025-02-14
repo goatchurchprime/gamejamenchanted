@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://baodf1csfd6m5"]
+
+[ext_resource type="PackedScene" uid="uid://cid4tru660orv" path="res://assets/imports/environment/flora/TreeOakRed.glb" id="1_utt2u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_utt2u"]
+margin = 0.0
+radius = 0.68
+height = 2.935
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eswsx"]
+radius = 0.3
+
+[node name="TreeOakRed" type="Node3D"]
+
+[node name="TreeOakRed2" parent="." instance=ExtResource("1_utt2u")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TreeOakRed2/TreeOakRed" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TreeOakRed2/TreeOakRed/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208495, -1.58211, 0)
+shape = SubResource("CapsuleShape3D_utt2u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TreeOakRed2/TreeOakRed/StaticBody3D"]
+transform = Transform3D(-0.307112, 0.864958, -0.396901, -0.950734, -0.297375, 0.0875906, -0.0422663, 0.404247, 0.913673, 1.30544, -2.63108, 0.664326)
+shape = SubResource("CapsuleShape3D_eswsx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="TreeOakRed2/TreeOakRed/StaticBody3D"]
+transform = Transform3D(-0.19183, 0.786291, 0.587322, -0.950734, -0.297375, 0.0875906, 0.243527, -0.541585, 0.8046, 1.27225, -2.63108, -0.92837)
+shape = SubResource("CapsuleShape3D_eswsx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="TreeOakRed2/TreeOakRed/StaticBody3D"]
+transform = Transform3D(0.204825, -0.814655, -0.542572, -0.950734, -0.297375, 0.0875906, -0.232704, 0.497901, -0.83543, -0.367191, -2.63108, 1.01061)
+shape = SubResource("CapsuleShape3D_eswsx")
+
+[editable path="TreeOakRed2"]
