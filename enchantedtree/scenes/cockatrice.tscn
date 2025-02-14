@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c88sum30u4txd"]
+[gd_scene load_steps=9 format=3 uid="uid://c88sum30u4txd"]
+
+[ext_resource type="AudioStream" uid="uid://cel7etd8d2jxl" path="res://sounds/independent_nu_ljudbank-break_crunch_impact/impcrunch/impactcrunch04.mp3.mp3" id="1_kofs5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vivmo"]
 albedo_color = Color(0.759395, 0.759395, 0.759395, 1)
@@ -14,6 +16,81 @@ albedo_color = Color(1, 0.729412, 0.266667, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_074og"]
 material = SubResource("StandardMaterial3D_yaehf")
 top_radius = 0.01
+
+[sub_resource type="Animation" id="Animation_82xsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/UpperBeak:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -2.32178)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/UpperBeak:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.55795, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/LowerBeak:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.530311, -2.26409)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/LowerBeak:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.88974, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_cegan"]
 resource_name = "move1"
@@ -92,81 +169,6 @@ tracks/5/keys = {
 "values": [Vector3(-1.88974, 0, 0), Vector3(-2.00189, 0, 0), Vector3(-1.62033, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_82xsv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/UpperBeak:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -2.32178)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/UpperBeak:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.55795, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/LowerBeak:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.530311, -2.26409)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Head/LowerBeak:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.88974, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_getpj"]
 _data = {
 &"RESET": SubResource("Animation_82xsv"),
@@ -174,7 +176,7 @@ _data = {
 }
 
 [node name="Cockatrice" type="Node3D"]
-transform = Transform3D(-0.0644663, -0.256714, 0.964335, -0.119335, 0.961394, 0.247953, -0.990759, -0.0990942, -0.0926122, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Head" type="Node3D" parent="."]
 
@@ -189,12 +191,12 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.5888
 material = SubResource("StandardMaterial3D_2cqfq")
 
 [node name="UpperBeak" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 0.0128454, 0.999918, 0, -0.999918, 0.0128454, 0, 0, -2.32178)
+transform = Transform3D(1, 0, 0, 0, 0.012846, 0.999918, 0, -0.999918, 0.012846, 0, 0, -2.32178)
 mesh = SubResource("CylinderMesh_074og")
 skeleton = NodePath("../..")
 
 [node name="LowerBeak" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, -0.313562, 0.949568, 0, -0.949568, -0.313562, 0, -0.530311, -2.26409)
+transform = Transform3D(1, 0, 0, 0, -0.313564, 0.949567, 0, -0.949567, -0.313564, 0, -0.530311, -2.26409)
 mesh = SubResource("CylinderMesh_074og")
 skeleton = NodePath("../..")
 
@@ -205,3 +207,8 @@ libraries = {
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 6.70552e-08, 2.08616e-07, -7.45058e-09, 1, -5.7742e-08, -4.47035e-08, 4.56348e-08, 1, 1.84231, 1.00984, -0.729393)
+
+[node name="AudioStreamPlayerCrunch" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988401, 0.151865, 0, -0.151865, 0.988401, 0, -0.292365, -2.33042)
+stream = ExtResource("1_kofs5")
+pitch_scale = 0.83
