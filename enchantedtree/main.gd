@@ -74,7 +74,7 @@ func getyouintothetree():
 
 func getyoutothespawnpoint():
 	$Cockatrice.visible = false
-	$TaviBlockouts/BlockoutDepression/Cube.visible = true
+	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = true
@@ -99,12 +99,12 @@ func cock1shadow():
 func cock2attack():
 	$Cockatrice.visible = true
 	$Cockatrice/AnimationPlayer.play("move1")
-	$TaviBlockouts/BlockoutDepression/Cube.visible = false
+	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
 	await get_tree().create_timer(0.8).timeout
-	$TaviBlockouts/BlockoutDepression/Cube.visible = true
+	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 	$Cockatrice.visible = false
 	$Cockatrice/AnimationPlayer.stop()
 	

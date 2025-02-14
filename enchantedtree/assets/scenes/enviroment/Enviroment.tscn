@@ -13,7 +13,7 @@
 
 [node name="Ground" parent="." instance=ExtResource("2_bhovc")]
 
-[node name="Flora" type="Node" parent="."]
+[node name="Flora" type="Node3D" parent="."]
 
 [node name="TreeOakRed" parent="Flora" instance=ExtResource("3_l8rf8")]
 transform = Transform3D(2.66074, 0, -1.3858, 0, 3, 0, 1.3858, 0, 2.66074, 6.92086, -0.205625, 25.6272)
@@ -186,7 +186,7 @@ transform = Transform3D(3, 0, 0, 0, 2.90373, 0.753877, 0, -0.753877, 2.90373, 5.
 [node name="EA_Swamp_BrokenTree_01a6" parent="Flora" instance=ExtResource("5_pyv03")]
 transform = Transform3D(2.9118, 0.670564, -0.267922, -0.722107, 2.70396, -1.08036, 0, 1.11308, 2.78587, -21.1245, -1.0869, 19.775)
 
-[node name="Terrain" type="Node" parent="."]
+[node name="Terrain" type="Node3D" parent="."]
 
 [node name="Wall2" parent="Terrain" instance=ExtResource("7_ak5an")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.4115, -0.137568, 28.1429)
@@ -200,4 +200,4 @@ transform = Transform3D(1.07103, 0, -0.217304, 0, 1, 0, 0.244197, 0, 0.953079, -
 [node name="EA_Swamp_Clif_02a2" parent="Terrain" instance=ExtResource("6_1lmuh")]
 transform = Transform3D(-0.0930394, 0, -0.98731, 0, 2.0057, 0, 0.848442, 0, -0.108267, -46.7281, 3.48079, -81.5856)
 
-[node name="Fauna" type="Node" parent="."]
+[node name="Fauna" type="Node3D" parent="."]
