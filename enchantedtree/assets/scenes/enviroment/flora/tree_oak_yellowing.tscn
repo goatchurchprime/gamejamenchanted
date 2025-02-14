@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1ydwij6sxa7t"]
+
+[ext_resource type="PackedScene" uid="uid://c8ckrp526fovc" path="res://assets/imports/environment/flora/TreeOakYellowing.glb" id="1_ohhpi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ohhpi"]
+margin = 0.0
+radius = 0.68
+height = 2.935
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2evsm"]
+radius = 0.3
+
+[node name="TreeOakYellowing" instance=ExtResource("1_ohhpi")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tree_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree_001/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.192369, -1.58211, 0.00166702)
+shape = SubResource("CapsuleShape3D_ohhpi")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tree_001/StaticBody3D" index="1"]
+transform = Transform3D(-0.307112, 0.864958, -0.396901, -0.950734, -0.297375, 0.0875906, -0.0422663, 0.404247, 0.913673, 1.28931, -2.63108, 0.665993)
+shape = SubResource("CapsuleShape3D_2evsm")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Tree_001/StaticBody3D" index="2"]
+transform = Transform3D(-0.19183, 0.786291, 0.587322, -0.950734, -0.297375, 0.0875906, 0.243527, -0.541585, 0.8046, 1.25612, -2.63108, -0.926703)
+shape = SubResource("CapsuleShape3D_2evsm")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Tree_001/StaticBody3D" index="3"]
+transform = Transform3D(0.204825, -0.814655, -0.542572, -0.950734, -0.297375, 0.0875906, -0.232704, 0.497901, -0.83543, -0.383316, -2.63108, 1.01228)
+shape = SubResource("CapsuleShape3D_2evsm")

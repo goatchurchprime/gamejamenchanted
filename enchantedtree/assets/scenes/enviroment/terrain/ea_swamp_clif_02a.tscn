@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xehkq0cgobc2"]
+
+[ext_resource type="PackedScene" uid="uid://dmhh6jpf65fyq" path="res://assets/imports/environment/terrain/EA_Swamp_Clif_02a.fbx" id="1_8mja0"]
+[ext_resource type="Material" uid="uid://pplksw06rxwy" path="res://assets/imports/materials/EA_Colorsheet.material" id="2_fhrqe"]
+
+[node name="EA_Swamp_Clif_02a" instance=ExtResource("1_8mja0")]
+
+[node name="EA_Swamp_Clif_02a" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_fhrqe")
