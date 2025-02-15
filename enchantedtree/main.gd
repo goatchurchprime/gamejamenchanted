@@ -105,7 +105,7 @@ func getyoutothespawnpoint():
 	$InsideTreeStuff/TreeHollowShadow.visible = true
 	$InsideTreeStuff/TreeDoorCover.visible = false
 	$InsideTreeStuff/TreeDoorCover.use_collision = false
-	
+	$World/TweetingBirdsong.play()
 	
 
 func cock1shadow():
@@ -146,3 +146,9 @@ func _input(event):
 		if event.keycode == KEY_K:
 			radialmenuitem("cock2")
 		
+
+func _on_tree_approach_area_body_entered(body):
+	print(body)
+	if body.name == "PlayerBody":
+		$World/TweetingBirdsong.stop()
+		$InsideTreeStuff/TreeApproachArea/AudioStreamPlayer3D.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=27 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://qo7618ftcfpt" path="res://Tools/Chisel/Breakable.tscn" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://btmit5ngynkqv" path="res://goatcode/fire_fly.tscn" id="10_yaehf"]
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
+[ext_resource type="Script" uid="uid://b5wjd4ct2ntsw" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d4anpju2ry1ms" path="res://assets/scenes/enviroment/Enviroment.tscn" id="12_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://ce8q413igd0j6" path="res://sounds/birds-isaiah658.ogg" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="15_yaehf"]
 [ext_resource type="PackedScene" uid="uid://c88sum30u4txd" path="res://scenes/cockatrice.tscn" id="16_2cqfq"]
@@ -64,6 +66,9 @@ resource_name = "TreeInside"
 cull_mode = 2
 albedo_color = Color(0.724963, 0.432528, 0.212802, 1)
 roughness = 0.909326
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
+size = Vector3(30, 10, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_dg77c")
@@ -131,6 +136,7 @@ collision_mask = 229383
 
 [node name="InsideTreeStuff" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -7.00771, 2.42495, -51.3526)
+script = ExtResource("12_w48qg")
 
 [node name="PosIntoTree" type="MeshInstance3D" parent="InsideTreeStuff"]
 transform = Transform3D(0.965336, 0, 0.26101, 0, 1, 0, -0.26101, 0, 0.965336, 0, 0, 0)
@@ -161,7 +167,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.073804, 0)
 mesh = SubResource("CylinderMesh_dg77c")
 
 [node name="Chisel" parent="InsideTreeStuff" instance=ExtResource("14_vivmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1414, -1.26923)
+
+[node name="PhysicsChiselContainer" parent="InsideTreeStuff/Chisel" index="0"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -7.00771, 2.42495, -51.3526)
+
+[node name="XRToolsPickable" parent="InsideTreeStuff/Chisel" index="1"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -7.00771, 2.42495, -51.3526)
 
 [node name="Hammer" parent="InsideTreeStuff" instance=ExtResource("15_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.242774, 1.10994, -1.30636)
@@ -171,10 +182,21 @@ transform = Transform3D(1.79739, 0, 1.77636e-15, 0, 1.04605, 0, 0, 0, 0.961867, 
 mesh = SubResource("CylinderMesh_w48qg")
 
 [node name="TreeDoorCover" type="CSGBox3D" parent="InsideTreeStuff"]
-transform = Transform3D(0.970959, 9.46183e-09, 0.239245, -0.0759572, 0.948263, 0.308267, -0.226867, -0.317487, 0.920724, 0.930458, 0.429771, 3.14654)
-visible = false
-size = Vector3(5, 4, 1)
+transform = Transform3D(0.970959, 9.46183e-09, 0.239245, -0.0759572, 0.948263, 0.308267, -0.226867, -0.317487, 0.920724, 0.930458, 0.778532, 3.14654)
+size = Vector3(5, 5, 1)
 material = SubResource("StandardMaterial3D_w48qg")
+
+[node name="TreeApproachArea" type="Area3D" parent="InsideTreeStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40353, -2.92539, 16.1088)
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InsideTreeStuff/TreeApproachArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10845, 0)
+shape = SubResource("BoxShape3D_w48qg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="InsideTreeStuff/TreeApproachArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.9858, 0)
 
 [node name="World" type="Node3D" parent="."]
 
@@ -188,9 +210,19 @@ transform = Transform3D(0.952044, 0, 0.307108, 0, 1, 0, -0.35155, 0, 1.14704, -7
 mesh = SubResource("PrismMesh_yaehf")
 skeleton = NodePath("")
 
+[node name="TweetingBirdsong" type="AudioStreamPlayer3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.3288, 0)
+stream = ExtResource("14_2cqfq")
+attenuation_model = 3
+volume_db = -4.396
+autoplay = true
+
 [node name="Cockatrice" parent="." instance=ExtResource("16_2cqfq")]
 transform = Transform3D(-0.0644663, -0.256714, 0.964335, -0.119335, 0.961394, 0.247953, -0.990759, -0.0990943, -0.0926124, -2.96153, 4.28351, -47.5331)
 
 [connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
+[connection signal="body_entered" from="InsideTreeStuff/TreeApproachArea" to="." method="_on_tree_approach_area_body_entered"]
 
+[editable path="InsideTreeStuff/Chisel"]
+[editable path="InsideTreeStuff/Chisel/PhysicsChiselContainer/Chisel2"]
 [editable path="World/Enviroment"]
