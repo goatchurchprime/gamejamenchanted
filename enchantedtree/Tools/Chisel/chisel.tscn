@@ -78,7 +78,7 @@ shape = SubResource("SphereShape3D_0ruxo")
 [node name="BreakArea" type="Area3D" parent="PhysicsChiselContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170693, 0, 0)
 collision_layer = 0
-collision_mask = 24704
+collision_mask = 8320
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PhysicsChiselContainer/BreakArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213201, 0, 0)

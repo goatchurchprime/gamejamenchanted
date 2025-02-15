@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cboau3aj1724t"
-path="res://.godot/imported/CubeFracturedSmall.glb-60b5f85a663a6a2178e43911e7385615.scn"
+uid="uid://b538qa1iwakqp"
+path="res://.godot/imported/runeflat.glb-f2556c5d5a42f32573cf0857ab4ec9a6.scn"
 
 [deps]
 
-source_file="res://Tools/Chisel/CubeFracturedSmall.glb"
-dest_files=["res://.godot/imported/CubeFracturedSmall.glb-60b5f85a663a6a2178e43911e7385615.scn"]
+source_file="res://Tools/Chisel/Rune/runeflat.glb"
+dest_files=["res://.godot/imported/runeflat.glb-f2556c5d5a42f32573cf0857ab4ec9a6.scn"]
 
 [params]
 
