@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyv1j0mvk4sn7"]
+
+[ext_resource type="PackedScene" uid="uid://cuaqfkufd22hu" path="res://assets/imports/environment/terrain/EA_Swamp_Stones_03e.fbx" id="1_qjn2e"]
+[ext_resource type="Material" uid="uid://pplksw06rxwy" path="res://assets/imports/materials/EA_Colorsheet.material" id="2_2ixaa"]
+
+[node name="EA_Swamp_Stones_03e" instance=ExtResource("1_qjn2e")]
+
+[node name="EA_Swamp_Stones_03e" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_2ixaa")
