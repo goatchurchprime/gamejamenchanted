@@ -1,5 +1,5 @@
+@tool
 extends Node3D
-
 
 @onready var xr_tools_pickable: XRToolsPickable = $XRToolsPickable
 @onready var physics_chisel_container: StaticBody3D = $PhysicsChiselContainer

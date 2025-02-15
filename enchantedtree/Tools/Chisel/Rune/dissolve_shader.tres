@@ -1,0 +1,126 @@
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://hrr7aucpjpsd"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_vnrir"]
+parameter_name = "DissolveRate"
+hint = 1
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_k6k02"]
+default_input_values = [0, 0.0, 1, 1.4]
+operator = 2
+
+[sub_resource type="VisualShaderNodeStep" id="VisualShaderNodeStep_2titp"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_iy1r5"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bkf3c"]
+source = 5
+texture_type = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ftkq0"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_towwl"]
+parameter_name = "Texture"
+texture_type = 1
+color_default = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_vsd20"]
+parameter_name = "Roughness"
+color_default = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_655ju"]
+parameter_name = "Normal_Map"
+texture_type = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_fujre"]
+parameter_name = "NoiseTexture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1ou7r"]
+expanded_output_ports = [0]
+source = 5
+texture_type = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D Texture : source_color, hint_default_transparent;
+uniform sampler2D NoiseTexture;
+uniform sampler2D Roughness : hint_default_transparent;
+uniform float DissolveRate : hint_range(0.0, 1.0) = 0.0;
+uniform sampler2D Normal_Map : hint_normal;
+
+
+
+void fragment() {
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(Texture, UV);
+
+
+	vec4 n_out9p0;
+// Texture2D:9
+	n_out9p0 = texture(NoiseTexture, UV);
+	float n_out9p1 = n_out9p0.r;
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(Roughness, UV);
+
+
+// FloatParameter:12
+	float n_out12p0 = DissolveRate;
+
+
+// FloatOp:13
+	float n_in13p1 = 1.40000;
+	float n_out13p0 = n_out12p0 * n_in13p1;
+
+
+// Step:14
+	float n_out14p0 = step(n_out9p1, n_out13p0);
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Normal_Map, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out9p0.x;
+	ROUGHNESS = n_out4p0.x;
+	EMISSION = vec3(n_out14p0);
+	NORMAL_MAP = vec3(n_out3p0.xyz);
+	ALPHA_SCISSOR_THRESHOLD = n_out12p0;
+
+
+}
+"
+graph_offset = Vector2(-1125.67, 498.304)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_iy1r5")
+nodes/fragment/2/position = Vector2(-720, -140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_bkf3c")
+nodes/fragment/3/position = Vector2(-720, 520)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_ftkq0")
+nodes/fragment/4/position = Vector2(-720, 220)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture2DParameter_towwl")
+nodes/fragment/5/position = Vector2(-1200, -280)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture2DParameter_vsd20")
+nodes/fragment/6/position = Vector2(-1200, 80)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture2DParameter_655ju")
+nodes/fragment/7/position = Vector2(-1200, 420)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture2DParameter_fujre")
+nodes/fragment/8/position = Vector2(-1200, 720)
+nodes/fragment/9/node = SubResource("VisualShaderNodeTexture_1ou7r")
+nodes/fragment/9/position = Vector2(-720, 760)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_vnrir")
+nodes/fragment/12/position = Vector2(-1200, 1060)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatOp_k6k02")
+nodes/fragment/13/position = Vector2(-460, 900)
+nodes/fragment/14/node = SubResource("VisualShaderNodeStep_2titp")
+nodes/fragment/14/position = Vector2(-180, 740)
+nodes/fragment/connections = PackedInt32Array(5, 0, 2, 2, 6, 0, 4, 2, 7, 0, 3, 2, 8, 0, 9, 2, 13, 0, 14, 1, 9, 1, 14, 0, 12, 0, 13, 0, 4, 0, 0, 3, 2, 0, 0, 0, 3, 0, 0, 9, 9, 0, 0, 1, 14, 0, 0, 5, 12, 0, 0, 19)
