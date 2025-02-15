@@ -22,7 +22,7 @@ func radialmenuitem(menutext):
 	elif menutext == "togglebloom":
 		$WorldEnvironment.environment.glow_enabled = not $WorldEnvironment.environment.glow_enabled
 	elif menutext == "intotree":
-		getyouintothetree()
+		getyouintotree()
 	elif menutext == "spawnpt":
 		getyoutothespawnpoint()
 	elif menutext == "cock1":
@@ -35,9 +35,10 @@ func radialmenuitem(menutext):
 func set_fade(p_value : float):
 	XRToolsFade.set_fade("teleport", Color(0.03, 0.03, 0.1, p_value))
 
-func getyouintothetree():
+func getyouintotree():
 	$XROrigin3D/XRControllerLeft/XRToolsCollisionHand/HandLight.visible = false
 	$XROrigin3D/XRControllerRight/XRToolsCollisionHand/HandLight.visible = false
+	$XROrigin3D/XRControllerLeft/MovementDirect.max_speed = 0.3
 	var tween = get_tree().create_tween()
 	var fadeto = 0.7
 	tween.tween_method(set_fade, 0.0, fadeto, 0.3)
@@ -89,6 +90,7 @@ func getyoutothespawnpoint():
 	await tween.finished
 	$XROrigin3D/XRControllerLeft/XRToolsCollisionHand/HandLight.visible = false
 	$XROrigin3D/XRControllerRight/XRToolsCollisionHand/HandLight.visible = false
+	$XROrigin3D/XRControllerLeft/MovementDirect.max_speed = 3.0
 
 func cock1shadow():
 	for i in range(5):
