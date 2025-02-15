@@ -45,16 +45,18 @@ func _physics_process(delta):
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body is XRToolsCollisionHand:
 		var palmvec = body.global_transform.basis.x
-		if body.get_parent().tracker == "left_hand":
+		if body.get_parent().tracker == "right_hand":
 			palmvec = -palmvec
 		var closingphvelocity = linear_velocity - body._last_movement/rec_physdelta
 		var swatvelocity = palmvec.dot(closingphvelocity)
-		#prints(swatvelocity, "gg ", body._last_movement/rec_physdelta, linear_velocity)
+		#prints("swatvelocity ", swatvelocity, body._last_movement/rec_physdelta)
+		#prints("  palmvec ", palmvec)
+		#prints("  fly velocity ", linear_velocity, linear_velocity.length(), flyvelocity*flyvecfac)
 		var handlight = body.get_node_or_null("HandLight")
 		if handlight:
 			body.get_parent().trigger_haptic_pulse(&"haptic",0,min(1.0,abs(swatvelocity)*100),0.06,0)
 			if swatvelocity < -0.3:
 				get_parent().get_parent().sethandlighton(handlight)
-				queue_free()
+#				queue_free()
 			elif swatvelocity > 0.2:
 				flyvecfac = 0.2
