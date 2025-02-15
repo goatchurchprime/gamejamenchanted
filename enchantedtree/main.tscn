@@ -101,70 +101,7 @@ collision_layer = 24577
 size = Vector3(1, 1.2, 1)
 
 [node name="Breakable" parent="." instance=ExtResource("9_yaehf")]
-transform = Transform3D(-0.542661, 0, 0.839951, 0, 1, 0, -0.839951, 0, -0.542661, -0.616909, 0.971325, -0.758467)
-
-[node name="PickableObject" parent="." instance=ExtResource("10_4c57u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.960747, 2.15895)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_2cqfq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_yaehf")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_ryguw")
-
-[node name="PickableObject2" parent="." instance=ExtResource("10_4c57u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280649, 0.960747, 2.30369)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject2"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_2cqfq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject2"]
-transform = Transform3D(0.980768, 0.195176, 0, -0.195176, 0.980768, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_yaehf")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_ryguw")
-
-[node name="TaviBlockouts" type="Node3D" parent="."]
-
-[node name="BlockoutDepression" parent="TaviBlockouts" instance=ExtResource("16_074og")]
-
-[node name="Ground" parent="TaviBlockouts/BlockoutDepression" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_074og")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TaviBlockouts/BlockoutDepression/Ground" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TaviBlockouts/BlockoutDepression/Ground/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.246983, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_cegan")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TaviBlockouts/BlockoutDepression/Cliff" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TaviBlockouts/BlockoutDepression/Cliff/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_82xsv")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TaviBlockouts/BlockoutDepression/Cliff_wide" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TaviBlockouts/BlockoutDepression/Cliff_wide/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_getpj")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TaviBlockouts/BlockoutDepression/Cube" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TaviBlockouts/BlockoutDepression/Cube/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ryguw")
-
-[node name="PosIntoTree" type="MeshInstance3D" parent="TaviBlockouts/BlockoutDepression/Cube" index="1"]
-transform = Transform3D(0.965336, 0, 0.26101, 0, 1, 0, -0.26101, 0, 0.965336, 0, -8.85361, 0)
-mesh = SubResource("PrismMesh_yaehf")
-
-[node name="PosSpawnPoint" type="MeshInstance3D" parent="TaviBlockouts"]
-transform = Transform3D(0.273741, 0, -1.16805, 0, 1, 0, 0.977262, 0, 0.21374, -13.5143, 0, 0)
-mesh = SubResource("PrismMesh_yaehf")
-skeleton = NodePath("")
+transform = Transform3D(0.593194, 0, -0.805059, 0, 1, 0, 0.805059, 0, 0.593194, -2.70826, 0.581937, -1.81971)
 
 [node name="DomiTools" type="Node3D" parent="."]
 
