@@ -45,8 +45,14 @@ func getyouintotree():
 	await tween.finished
 	tween.kill()
 	var treecentretrans = find_child("PosIntoTree").global_transform
+
+	for f in $FireFlies/FlyList.get_children():
+		f.queue_free()
+	$FireFlies.position = treecentretrans.origin
+	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
+	$FireFlies.nmaxfireflies = 10
 	
-	# rapid drawing into the tree
+	# rapid pulling us into the tree
 	if Ddebugmode:
 		$XROrigin3D/PlayerBody.teleport(treecentretrans)
 	else:
@@ -61,20 +67,25 @@ func getyouintotree():
 			$XROrigin3D/XRControllerRight.trigger_haptic_pulse(&"haptic",0,i/10.0,0.09,0)
 			$XROrigin3D/TeleportToTreesound.play()
 			await get_tree().create_timer(0.2).timeout
+
+			if i == 9:
+				$WorldEnvironment/DirectionalLight3D.visible = false
+				$WorldEnvironment.environment.background_energy_multiplier = 0.09
+
 		$XROrigin3D/MovementGravityZones.enabled = false
 		$XROrigin3D/MovementFlight.enabled = false
 		$XROrigin3D/MovementDesktopFlight.enabled = false
 
-	$FireFlies.position = treecentretrans.origin
-	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
-	$FireFlies.nmaxfireflies = 10
-	for f in $FireFlies/FlyList.get_children():
-		f.queue_free()
 	$WorldEnvironment/DirectionalLight3D.visible = false
 	$WorldEnvironment.environment.background_energy_multiplier = 0.09
 	tween = get_tree().create_tween()
 	tween.tween_method(set_fade, fadeto, 0.0, 1.0)
 	await tween.finished
+
+	$InsideTreeStuff/TreeDoorCover.visible = true
+	$InsideTreeStuff/TreeDoorCover.use_collision = true
+	$InsideTreeStuff/TreeHollowShadow.visible = false
+
 
 func getyoutothespawnpoint():
 	$Cockatrice.visible = false
@@ -91,6 +102,11 @@ func getyoutothespawnpoint():
 	$XROrigin3D/XRControllerLeft/XRToolsCollisionHand/HandLight.visible = false
 	$XROrigin3D/XRControllerRight/XRToolsCollisionHand/HandLight.visible = false
 	$XROrigin3D/XRControllerLeft/MovementDirect.max_speed = 3.0
+	$InsideTreeStuff/TreeHollowShadow.visible = true
+	$InsideTreeStuff/TreeDoorCover.visible = false
+	$InsideTreeStuff/TreeDoorCover.use_collision = false
+	
+	
 
 func cock1shadow():
 	for i in range(5):
