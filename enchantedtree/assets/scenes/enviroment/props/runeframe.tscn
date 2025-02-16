@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3tpwj8btdg5m"]
+
+[ext_resource type="PackedScene" uid="uid://bqnjlkx1bjnm8" path="res://assets/imports/environment/props/runeframe.glb" id="1_crx6t"]
+[ext_resource type="Texture2D" uid="uid://bggax6fan3mbj" path="res://assets/imports/materials/Colorsheet.png" id="2_kppr4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crx6t"]
+albedo_texture = ExtResource("2_kppr4")
+
+[node name="runeframe" instance=ExtResource("1_crx6t")]
+
+[node name="Cube_755" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_crx6t")

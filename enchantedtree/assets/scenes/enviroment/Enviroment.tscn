@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4anpju2ry1ms"]
+[gd_scene load_steps=16 format=3 uid="uid://d4anpju2ry1ms"]
 
 [ext_resource type="PackedScene" uid="uid://bjt8yj6klbbbx" path="res://assets/scenes/enviroment/terrain/ground.tscn" id="2_bhovc"]
 [ext_resource type="PackedScene" uid="uid://bquh1bnychfoh" path="res://assets/scenes/enviroment/flora/conifer.tscn" id="2_l8rf8"]
@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://bncq1mxnl44w1" path="res://assets/scenes/enviroment/props/ea_fence_01a.tscn" id="11_poyyf"]
 [ext_resource type="PackedScene" uid="uid://dyv1j0mvk4sn7" path="res://assets/scenes/enviroment/terrain/ea_swamp_stones_03e.tscn" id="12_obqiy"]
 [ext_resource type="PackedScene" uid="uid://cdm2kscldoaft" path="res://assets/scenes/enviroment/props/wall_small.tscn" id="13_yo2cf"]
+[ext_resource type="PackedScene" uid="uid://d3tpwj8btdg5m" path="res://assets/scenes/enviroment/props/runeframe.tscn" id="14_ayjgm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yo2cf"]
+size = Vector3(1, 59.13, 200)
 
 [node name="Enviroment" type="Node3D"]
 
@@ -221,9 +225,6 @@ transform = Transform3D(0.919135, 0, 0.393942, 0, 2.905, 0, -0.393942, 0, 0.9191
 
 [node name="Terrain" type="Node3D" parent="."]
 
-[node name="Wall2" parent="Terrain" instance=ExtResource("7_ak5an")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.4115, -0.137568, 28.1429)
-
 [node name="EnchantedTreeSPLIT" parent="Terrain" instance=ExtResource("8_4yof7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06473, -0.674127, -50.7495)
 
@@ -296,6 +297,9 @@ transform = Transform3D(-0.985825, -0.0474905, 0.160915, -0.0481176, 0.998842, 0
 [node name="EA_Swamp_Stones_03e4" parent="Terrain" instance=ExtResource("12_obqiy")]
 transform = Transform3D(-1.04319, -0.0476237, 0.218411, -0.0509175, 1.00164, 0, -0.170081, -0.00776454, -1.33962, -21.7112, -2.97832, 39.3426)
 
+[node name="Wall2" parent="Terrain" instance=ExtResource("7_ak5an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.4115, -0.137568, 28.1429)
+
 [node name="Fauna" type="Node3D" parent="."]
 
 [node name="props" type="Node3D" parent="."]
@@ -344,3 +348,18 @@ transform = Transform3D(0.999079, -0.0270565, -0.0333108, 0.0266841, 0.999577, -
 
 [node name="EA_Fence_01a" parent="." instance=ExtResource("11_poyyf")]
 transform = Transform3D(-0.999634, 0, -0.0270493, 0, 1, 0, 0.0270493, 0, -0.999634, -0.231316, -1.73554, 44.3715)
+
+[node name="Inivisblewalls" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Inivisblewalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Inivisblewalls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.6475, 28.5351, 40.3454)
+shape = SubResource("BoxShape3D_yo2cf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Inivisblewalls/StaticBody3D"]
+transform = Transform3D(0.307506, 0, 0.951546, 0, 1, 0, -0.951546, 0, 0.307506, -18.8469, 28.5351, -83.0836)
+shape = SubResource("BoxShape3D_yo2cf")
+
+[node name="runeframe" parent="." instance=ExtResource("14_ayjgm")]
+transform = Transform3D(-0.452113, 0.283413, 0.845737, 0.133613, 0.958998, -0.249941, -0.881897, 0, -0.471443, -8.2172, 3.1843, -49.9172)
