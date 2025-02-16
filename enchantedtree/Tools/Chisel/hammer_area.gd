@@ -52,6 +52,7 @@ func _on_body_entered(body: StaticBody3D) -> void:
 	
 		get_node("/root/Main/XROrigin3D/XRControllerLeft").trigger_haptic_pulse(&"haptic",0,0.5,0.25,0)
 		get_node("/root/Main/XROrigin3D/XRControllerRight").trigger_haptic_pulse(&"haptic",0,1.0,0.09,0)
+		$GPUParticles3D.emitting = true
 
 		var audio_stream_player = AudioStreamPlayer3D.new()
 		audio_stream_player.global_position = global_position

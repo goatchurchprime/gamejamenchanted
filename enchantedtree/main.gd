@@ -13,6 +13,8 @@ var Ddebugmode = true
 func radialmenuitem(menutext):
 	if menutext == "togglecandle":
 		$InsideTreeStuff/CandleLightConetree.visible = not $InsideTreeStuff/CandleLightConetree.visible
+		candlelightlow = 1
+		candlelighthi = 3
 	elif menutext == "toggleshadow":
 		#$CandleLight.shadow_enabled = not $CandleLight.shadow_enabled
 		var vv = $WorldEnvironment/DirectionalLight3D.shadow_enabled

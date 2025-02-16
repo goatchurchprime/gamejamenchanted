@@ -19,7 +19,6 @@ func _on_timer_timeout():
 	if $FlyList.get_child_count() < nmaxfireflies:
 		var newfly = load("res://goatcode/fire_fly.tscn").instantiate()
 		newfly.position = Vector3(randf_range(-fireflyspawnrad, fireflyspawnrad), fireflyspawnaltitude, randf_range(-fireflyspawnrad, fireflyspawnrad))
-		print("spawn fly at ", newfly.position)
 		newfly.xzrange = fireflyxzrange
 		$FlyList.add_child(newfly)
 	elif $FlyList.get_child_count() > nmaxfireflies:

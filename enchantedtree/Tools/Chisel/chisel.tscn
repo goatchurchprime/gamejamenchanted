@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbhbxx871gscn"]
+[gd_scene load_steps=19 format=3 uid="uid://dbhbxx871gscn"]
 
 [ext_resource type="Script" uid="uid://dcyq7kyuylstx" path="res://Tools/Chisel/chisel.gd" id="1_0ruxo"]
 [ext_resource type="Script" uid="uid://6kmn3ox5u8mt" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_suid3"]
@@ -9,6 +9,39 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0ruxo"]
 height = 0.00628662
 radius = 0.0185547
+
+[sub_resource type="Gradient" id="Gradient_o45tt"]
+offsets = PackedFloat32Array(0, 0.645503, 0.650794, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.890196, 0, 0, 1, 0.92854, 0.349206, 0.349206, 1, 0.929412, 0.152941, 0.34902, 0.0235294)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6l8po"]
+gradient = SubResource("Gradient_o45tt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qo88i"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 0.979
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_6l8po")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5levn"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0.356863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uid6h"]
+material = SubResource("StandardMaterial3D_5levn")
+size = Vector3(0.001, 0.005, 0.005)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45tt"]
 
@@ -55,6 +88,16 @@ pixel_size = 0.004
 text = "Test"
 font_size = 12
 outline_size = 1
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="PhysicsChiselContainer/HammerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00343496, 0, 0)
+emitting = false
+amount = 80
+lifetime = 0.13
+one_shot = true
+explosiveness = 0.88
+process_material = SubResource("ParticleProcessMaterial_qo88i")
+draw_pass_1 = SubResource("BoxMesh_uid6h")
 
 [node name="Chisel2" parent="PhysicsChiselContainer" instance=ExtResource("4_o45tt")]
 
