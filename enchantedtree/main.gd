@@ -3,6 +3,7 @@ extends Node3D
 func _ready() -> void:
 	$XROrigin3D/XRAim3D/RadialMenu.connect("menuitemselected", radialmenuitem)
 	radialmenuitem("spawnpt")
+	$InsideTreeStuff/Runecarve1.correct_fragment_treshold_reached.connect(cock2attack)
 
 func getcontextmenutexts():
 	return [ "spawnpt", 
@@ -85,13 +86,14 @@ func getyouintotree():
 	tween.tween_method(set_fade, fadeto, 0.0, 1.0)
 	await tween.finished
 
-	$InsideTreeStuff/TreeDoorCover.visible = true
+	#$InsideTreeStuff/TreeDoorCover.visible = true
 	$InsideTreeStuff/TreeDoorCover.use_collision = true
 	$InsideTreeStuff/TreeHollowShadow.visible = false
 
 	$FireFlies.position = treecentretrans.origin
 	print("gg ", $XROrigin3D/XRCamera3D.global_position.y)
 	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
+	$InsideTreeStuff/Runecarve1.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
 	$FireFlies.nmaxfireflies = 10
 	$FireFlies.fireflyspawnaltitude = 1.5 if Ddebugmode else 3.0
 
@@ -103,6 +105,7 @@ func getyoutothespawnpoint():
 		$DomiTools.queue_free()
 	$cockatrice.visible = false
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
+	$World/Enviroment/vines2.visible = true
 	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = true
@@ -134,9 +137,11 @@ func cock2attack():
 	$cockatrice.visible = true
 	$cockatrice/AnimationPlayer.play("attack_tree2")
 	$InsideTreeStuff/TreeDoorCover.visible = false
+
 	print("made tree door cover off, ", $InsideTreeStuff/TreeDoorCover.visible)
 	$cockatrice/AudioStreamPlayerScream.play()
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
+	#$World/Enviroment/vines2.visible = false
 	await get_tree().create_timer(2.0).timeout
 	$InsideTreeStuff/TreeDoorCover.visible = false
 	print("made tree door cover off, ", $InsideTreeStuff/TreeDoorCover.visible)
@@ -144,20 +149,24 @@ func cock2attack():
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
 	await get_tree().create_timer(0.8).timeout
-	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
-	$InsideTreeStuff/TreeDoorCover.visible = true
+	$InsideTreeStuff/TreeDoorCover.visible = false
 	$cockatrice.visible = false
 	$cockatrice/AnimationPlayer.stop()
 	
 	# you are now free to go
 	var tween = get_tree().create_tween()
-	tween.tween_method(set_fade, 0.0, 1.0, 1.6)
+	tween.tween_method(set_fade, 0.0, 1.0, 0.3)
 	await tween.finished
 	tween.kill()
+	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 
 	$InsideTreeStuff/TreeDoorCover.use_collision = false
+	#$World/Enviroment/vines2/Vines/StaticBody3D.enabled = false
+	$World/Enviroment/vines2.queue_free()
+	$InsideTreeStuff/TreeApproachArea.queue_free()
 	$WorldEnvironment/DirectionalLight3D.visible = true
 	$InsideTreeStuff/TreeDoorCover.visible = false
+	$World/Enviroment/vines2.visible = false
 	$WorldEnvironment.environment.background_energy_multiplier = 0.5
 	$InsideTreeStuff/CandleLightConetree.visible = false
 	$XROrigin3D/XRControllerLeft/MovementDirect.max_speed = 6.0
