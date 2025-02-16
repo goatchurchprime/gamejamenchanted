@@ -365,7 +365,6 @@ omni_range = 6.377
 [connection signal="body_entered" from="InsideTreeStuff/TreeApproachArea" to="." method="_on_tree_approach_area_body_entered"]
 
 [editable path="InsideTreeStuff/Chisel"]
-[editable path="InsideTreeStuff/Chisel/PhysicsChiselContainer/Chisel2"]
 [editable path="World/Enviroment"]
 [editable path="Cockatrice"]
 [editable path="cockatrice"]

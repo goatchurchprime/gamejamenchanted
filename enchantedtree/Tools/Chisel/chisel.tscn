@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=4 uid="uid://dbhbxx871gscn"]
+[gd_scene load_steps=23 format=4 uid="uid://dbhbxx871gscn"]
 
 [ext_resource type="Script" uid="uid://dcyq7kyuylstx" path="res://Tools/Chisel/chisel.gd" id="1_0ruxo"]
 [ext_resource type="Script" uid="uid://6kmn3ox5u8mt" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_suid3"]
 [ext_resource type="Script" uid="uid://cohmea07n28aq" path="res://Tools/Chisel/hammer_area.gd" id="3_o45tt"]
+[ext_resource type="Texture2D" uid="uid://bt5b7k6dbcx87" path="res://Tools/Chisel/metalic_texture.jpg" id="3_qo88i"]
 [ext_resource type="Script" uid="uid://363ivkw1q7v2" path="res://Tools/Chisel/rock_probe.gd" id="4_6l8po"]
 [ext_resource type="Script" uid="uid://c0nw3n2y4k8j1" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="4_mtskl"]
 [ext_resource type="Script" uid="uid://dyderqcefym3e" path="res://Tools/Chisel/rune_detect_area.gd" id="4_qo88i"]
@@ -44,9 +45,11 @@ albedo_color = Color(1, 1, 0.356863, 1)
 material = SubResource("StandardMaterial3D_5levn")
 size = Vector3(0.001, 0.005, 0.005)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45tt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qo88i"]
+albedo_texture = ExtResource("3_qo88i")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb20h"]
+albedo_texture = ExtResource("3_qo88i")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qxupa"]
 _surfaces = [{
@@ -127,7 +130,7 @@ draw_pass_1 = SubResource("BoxMesh_uid6h")
 [node name="Chisel2" type="Node3D" parent="PhysicsChiselContainer"]
 
 [node name="Chisel" type="MeshInstance3D" parent="PhysicsChiselContainer/Chisel2"]
-material_override = SubResource("StandardMaterial3D_o45tt")
+material_override = SubResource("StandardMaterial3D_qo88i")
 mesh = SubResource("ArrayMesh_6l8po")
 skeleton = NodePath("")
 
