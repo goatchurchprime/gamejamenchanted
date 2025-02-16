@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdm2kscldoaft"]
+[gd_scene load_steps=4 format=3 uid="uid://cdm2kscldoaft"]
 
 [ext_resource type="PackedScene" uid="uid://bumejjsiivd5y" path="res://assets/imports/environment/props/wall_small.glb" id="1_v5lds"]
 [ext_resource type="Material" uid="uid://pplksw06rxwy" path="res://assets/imports/materials/EA_Colorsheet.material" id="2_14yaf"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rhsir"]
+points = PackedVector3Array(-3.19324, -0.186462, -0.81561, 3.05841, 1.01062, -0.150455, 3.32424, 0.877287, 0.647512, 4.25591, -1.11771, -0.682486, -4.25741, -1.11771, 0.647512, -3.32574, 0.877287, 0.647512, 4.25591, -1.11771, 0.647512, -4.25741, 0.744162, -0.682486, 4.25591, 0.744162, -0.682486, -4.25741, -1.11771, -0.682486, 3.19174, 0.0791629, 0.780637, 2.52591, -0.585628, -0.81561, -2.39491, -0.186462, 0.780637, 1.86091, 1.01062, -0.549517, -1.99575, 1.01062, 0.248451, -3.19324, 0.345204, -0.81561, 3.82346, 0.663121, 0.579953, -3.82497, 0.663121, 0.579953, -1.10134, -1.03227, 0.716556, -1.99575, 1.01062, -0.150455, 2.45038, -0.91148, 0.717969, -1.06967, -1.00411, -0.730411, -3.32574, 0.877287, -0.283424)
 
 [node name="wall_small" instance=ExtResource("1_v5lds")]
 
 [node name="wall_small_006" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, 0)
 surface_material_override/0 = ExtResource("2_14yaf")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="wall_small_006" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_small_006/StaticBody3D2" index="0"]
+shape = SubResource("ConvexPolygonShape3D_rhsir")
