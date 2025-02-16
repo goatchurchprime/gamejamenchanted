@@ -237,16 +237,17 @@ mesh = SubResource("CylinderMesh_w48qg")
 
 [node name="TreeDoorCover" type="CSGBox3D" parent="InsideTreeStuff"]
 transform = Transform3D(0.970959, 9.46183e-09, 0.239245, -0.0759572, 0.948263, 0.308267, -0.226867, -0.317487, 0.920724, 0.930458, 0.778532, 3.14654)
+visible = false
 size = Vector3(5, 5, 1)
 material = SubResource("StandardMaterial3D_w48qg")
 
 [node name="TreeApproachArea" type="Area3D" parent="InsideTreeStuff"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40353, -2.92539, 16.1088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40353, -2.92539, 20.9367)
 collision_layer = 0
 collision_mask = 524288
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InsideTreeStuff/TreeApproachArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10845, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, 2.10845, 4.81038)
 shape = SubResource("BoxShape3D_w48qg")
 
 [node name="VultureSound" type="AudioStreamPlayer3D" parent="InsideTreeStuff/TreeApproachArea"]
@@ -261,7 +262,7 @@ stream = ExtResource("13_2cqfq")
 transform = Transform3D(0.999996, 8.70241e-05, -0.00278232, -9.14029e-05, 0.999999, -0.00156591, 0.00278218, 0.00156615, 0.999995, 0, 0, 0)
 
 [node name="PosSpawnPoint" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.952044, 0, 0.307108, 0, 1, 0, -0.35155, 0, 1.14704, -7.27831, -1.49794, 1.93332)
+transform = Transform3D(0.603645, 0, -1.01548, 0, 1, 0, 0.815836, 0, 0.615477, -43.074, -2.77602, 42.1738)
 mesh = SubResource("PrismMesh_yaehf")
 skeleton = NodePath("")
 
@@ -283,7 +284,7 @@ transform = Transform3D(1, 0, 0, 0, 0.012846, 0.999918, 0, -0.999918, 0.012846, 
 transform = Transform3D(1, 0, 0, 0, -0.313564, 0.949567, 0, -0.949567, -0.313564, 0, -0.530311, -2.26409)
 
 [node name="cockatrice" parent="." instance=ExtResource("18_82xsv")]
-transform = Transform3D(-0.595861, 0, -0.803088, 0, 1, 0, 0.803088, 0, -0.595861, 0, 0, -46.2185)
+transform = Transform3D(-0.595861, 0, -0.803088, 0, 1, 0, 0.803088, 0, -0.595861, -2.19387, 4.46594, -46.2185)
 
 [node name="Skeleton3D" parent="cockatrice/metarig" index="0"]
 bones/0/position = Vector3(0.0248251, 2.46774, -0.38346)
@@ -325,6 +326,7 @@ bones/26/rotation = Quaternion(0.413947, -0.142058, 0.723154, 0.534338)
 bones/27/position = Vector3(0.0785735, -0.0509123, 0.0929067)
 bones/27/rotation = Quaternion(0.516197, 0.692356, -0.0706948, 0.499185)
 bones/28/position = Vector3(-0.130368, -0.040579, 0.0956171)
+bones/28/rotation = Quaternion(-0.58292, 0.707994, 0.118842, -0.380558)
 bones/29/position = Vector3(0.461089, 0.298186, 0.377877)
 bones/29/rotation = Quaternion(0.481408, 0.262499, -0.0822389, 0.832212)
 bones/30/rotation = Quaternion(0.315433, -0.0601315, 0.235292, 0.917346)
@@ -345,6 +347,8 @@ bones/43/rotation = Quaternion(0.380556, 0.833064, -0.381815, 0.124094)
 bones/44/rotation = Quaternion(-0.180619, 0.0187485, -0.00956125, 0.983328)
 bones/45/rotation = Quaternion(-0.144346, 0.869329, -0.461481, -0.102308)
 bones/46/rotation = Quaternion(-0.287799, -0.130281, 0.025886, 0.948435)
+bones/47/position = Vector3(0, 0, 0)
+bones/47/rotation = Quaternion(0, 0, 0, 1)
 
 [node name="AudioStreamPlayerScream" type="AudioStreamPlayer3D" parent="cockatrice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.35653)

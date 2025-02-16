@@ -4,9 +4,10 @@ func _ready() -> void:
 	$XROrigin3D/XRAim3D/RadialMenu.connect("menuitemselected", radialmenuitem)
 
 func getcontextmenutexts():
-	return [ "togglecandle", "toggleshadow", 
-			 "intotree", "spawnpt", "respawntools", 
-			 "cock1", "cock2" ]
+	return [ "spawnpt", 
+			 "togglecandle", "toggleshadow", 
+			 "intotree", "respawntools", 
+			 "cocktrice" ]
 
 var Ddebugmode = true
 
@@ -29,7 +30,7 @@ func radialmenuitem(menutext):
 		getyoutothespawnpoint()
 	elif menutext == "cock1":
 		cock1shadow()
-	elif menutext == "cock2":
+	elif menutext == "cocktrice":
 		cock2attack()
 	elif menutext == "respawntools":
 		$InsideTreeStuff.nextframerespawntools = true
@@ -95,9 +96,10 @@ func getyouintotree():
 
 
 func getyoutothespawnpoint():
-	$Stump.queue_free()
-	$Breakable.queue_free()
-	$DomiTools.queue_free()
+	if has_node("Stump"):
+		$Stump.queue_free()
+		$Breakable.queue_free()
+		$DomiTools.queue_free()
 	$cockatrice.visible = false
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 	Ddebugmode = false
@@ -132,8 +134,8 @@ func cock2attack():
 	$cockatrice/AnimationPlayer.play("attack_tree2")
 	$InsideTreeStuff/TreeDoorCover.visible = false
 	$cockatrice/AudioStreamPlayerScream.play()
-	await get_tree().create_timer(2.0).timeout
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
+	await get_tree().create_timer(2.0).timeout
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
