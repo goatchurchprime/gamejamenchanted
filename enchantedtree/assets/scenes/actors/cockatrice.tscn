@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://4juykrbtwm70"]
+
+[ext_resource type="PackedScene" uid="uid://jxolxydbmnyw" path="res://assets/imports/environment/fauna/cockatrice.glb" id="1_sl7yv"]
+
+[node name="cockatrice" instance=ExtResource("1_sl7yv")]
