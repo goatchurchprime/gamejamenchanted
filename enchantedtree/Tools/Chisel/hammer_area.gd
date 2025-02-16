@@ -14,19 +14,14 @@ const hit_sounds = [
 	preload("res://Tools/Chisel/Sounds/metal_hit_-05.mp3")
 ]
 
-@onready var label_3d: Label3D = $Label3D
-
 func restore_chunk(material: ShaderMaterial, weight):
 	material.set_shader_parameter("DissolveRate", weight)
 	
 func _on_body_entered(body: StaticBody3D) -> void:
-	label_3d.text = str(body.get_groups())
-
 	if body.is_in_group("chisel_hammer_hit"):
 		if body.tool_velocity == null:
 			return
 		var velocity = body.tool_velocity
-		label_3d.text = str(velocity)
 		
 		if velocity < min_hammer_velocity: 
 			return

@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var minimum_broken_to_finish := 15
+var minimum_broken_to_finish := 9999
 @export var highlight_rune_on_finish := true
 @export var highlight_color : Color
 @onready var rune_shape: Path3D = $RuneShape
@@ -76,7 +76,7 @@ func process_rune_points_overlaps():
 			if !fragment.is_in_group("rune_point"):
 				rune_chunk_count += 1
 				fragment.add_to_group('rune_point')
-
+	minimum_broken_to_finish = rune_chunk_count * 0.75
 		#var debug_mesh = MeshInstance3D.new()
 		#debug_mesh.mesh = SphereMesh.new()
 		#debug_mesh.mesh.height = 0.02

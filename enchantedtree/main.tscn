@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qo7618ftcfpt" path="res://Tools/Chisel/Breakable.tscn" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://btmit5ngynkqv" path="res://goatcode/fire_fly.tscn" id="10_yaehf"]
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
-[ext_resource type="Script" uid="uid://b5wjd4ct2ntsw" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
+[ext_resource type="Script" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d4anpju2ry1ms" path="res://assets/scenes/enviroment/Enviroment.tscn" id="12_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dg1xv0ftd1wg0" path="res://sounds/vulture-1.wav" id="13_2cqfq"]
 [ext_resource type="AudioStream" uid="uid://da0qt32ukjpju" path="res://sounds/bug_09.ogg" id="13_yaehf"]
