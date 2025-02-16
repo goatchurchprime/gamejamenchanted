@@ -83,6 +83,7 @@ debug_color = Color(0.968513, 0, 0.46738, 0.42)
 
 [node name="Label3D" type="Label3D" parent="PhysicsChiselContainer/HammerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0451269, 0)
+visible = false
 pixel_size = 0.004
 text = "Test"
 font_size = 12
