@@ -95,7 +95,10 @@ func getyouintotree():
 
 
 func getyoutothespawnpoint():
-	$Cockatrice.visible = false
+	$Stump.queue_free()
+	$Breakable.queue_free()
+	$DomiTools.queue_free()
+	$cockatrice.visible = false
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
@@ -125,10 +128,10 @@ func cock1shadow():
 		await get_tree().create_timer(0.5).timeout
 	
 func cock2attack():
-	$Cockatrice.visible = true
-	$Cockatrice/AnimationPlayer.play("move1")
+	$cockatrice.visible = true
+	$cockatrice/AnimationPlayer.play("attack_tree2")
 	$InsideTreeStuff/TreeDoorCover.visible = false
-	$Cockatrice/AudioStreamPlayerScream.play()
+	$cockatrice/AudioStreamPlayerScream.play()
 	await get_tree().create_timer(2.0).timeout
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
@@ -137,8 +140,8 @@ func cock2attack():
 	await get_tree().create_timer(0.8).timeout
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
 	$InsideTreeStuff/TreeDoorCover.visible = true
-	$Cockatrice.visible = false
-	$Cockatrice/AnimationPlayer.stop()
+	$cockatrice.visible = false
+	$cockatrice/AnimationPlayer.stop()
 	
 
 var candlelightlow = 0
