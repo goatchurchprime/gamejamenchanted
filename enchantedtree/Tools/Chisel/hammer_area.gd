@@ -31,12 +31,21 @@ func _on_body_entered(body: StaticBody3D) -> void:
 		if velocity < min_hammer_velocity: 
 			return
 		
+		var destroyed_chunks = 0
+		var chisable_owner : Node3D
 		var bodies_in_target = break_area.get_overlapping_bodies()
 		for body_in_target in bodies_in_target:
 			if body_in_target.is_in_group("chisable"):
+				chisable_owner = body_in_target.owner
+				if chisable_owner.finished:
+					return
 				var parent_mesh = body_in_target.get_parent() as MeshInstance3D
 				var material = parent_mesh.mesh.surface_get_material(0) as ShaderMaterial
 				material.set_shader_parameter("DissolveRate", 1)
+				
+				if body_in_target.is_in_group("rune_point") and !body_in_target.is_in_group("rune_point_destroyed"):
+					body_in_target.add_to_group("rune_point_destroyed")
+					destroyed_chunks += 1
 				
 				if !body_in_target.is_in_group("rune_point"):
 					var id = parent_mesh.get_instance_id()
@@ -47,9 +56,9 @@ func _on_body_entered(body: StaticBody3D) -> void:
 						restore_chunk(material, rate)
 					, 1.0, 0.0, 3.0)
 					
-	
-		get_node("/root/Main/XROrigin3D/XRControllerLeft").trigger_haptic_pulse(&"haptic",0,0.5,0.25,0)
-		get_node("/root/Main/XROrigin3D/XRControllerRight").trigger_haptic_pulse(&"haptic",0,1.0,0.09,0)
+		if chisable_owner != null:
+			chisable_owner.destroy_chunks(destroyed_chunks)
+			
 		$GPUParticles3D.emitting = true
 
 		var audio_stream_player = AudioStreamPlayer3D.new()
