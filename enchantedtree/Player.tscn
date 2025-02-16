@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_rv870"]
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="8_efikj"]
 [ext_resource type="PackedScene" uid="uid://bj1aas6kty3qx" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_physics_tac_glove_low.tscn" id="8_sg6sq"]
-[ext_resource type="Script" path="res://goatcode/hand_light.gd" id="9_0pi4m"]
+[ext_resource type="Script" uid="uid://b3c7bhqo0j7dw" path="res://goatcode/hand_light.gd" id="9_0pi4m"]
 [ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="9_itxgx"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="10_cgsek"]
 [ext_resource type="PackedScene" uid="uid://2h8mjimpo5ra" path="res://addons/xr-radialmenu/XRNodeAim.tscn" id="11_0pi4m"]

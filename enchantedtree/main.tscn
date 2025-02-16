@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qo7618ftcfpt" path="res://Tools/Chisel/Breakable.tscn" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://btmit5ngynkqv" path="res://goatcode/fire_fly.tscn" id="10_yaehf"]
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
-[ext_resource type="Script" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://b5wjd4ct2ntsw" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d4anpju2ry1ms" path="res://assets/scenes/enviroment/Enviroment.tscn" id="12_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dg1xv0ftd1wg0" path="res://sounds/vulture-1.wav" id="13_2cqfq"]
 [ext_resource type="AudioStream" uid="uid://da0qt32ukjpju" path="res://sounds/bug_09.ogg" id="13_yaehf"]
@@ -218,6 +218,12 @@ mesh = SubResource("CylinderMesh_dg77c")
 [node name="Chisel" parent="InsideTreeStuff" instance=ExtResource("14_vivmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156356, 1.30085, -1.14828)
 
+[node name="PhysicsChiselContainer" parent="InsideTreeStuff/Chisel" index="0"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -7.16407, 3.7258, -52.5009)
+
+[node name="XRToolsPickable" parent="InsideTreeStuff/Chisel" index="1"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -7.16407, 3.7258, -52.5009)
+
 [node name="Hammer" parent="InsideTreeStuff" instance=ExtResource("15_yaehf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226424, 1.10994, -1.30636)
 
@@ -270,4 +276,6 @@ transform = Transform3D(-0.0644663, -0.256714, 0.964335, -0.119335, 0.961394, 0.
 [connection signal="body_entered" from="InsideTreeStuff/CandlestickActivation" to="." method="_on_candlestick_activation_body_entered"]
 [connection signal="body_entered" from="InsideTreeStuff/TreeApproachArea" to="." method="_on_tree_approach_area_body_entered"]
 
+[editable path="InsideTreeStuff/Chisel"]
+[editable path="InsideTreeStuff/Chisel/PhysicsChiselContainer/Chisel2"]
 [editable path="World/Enviroment"]
