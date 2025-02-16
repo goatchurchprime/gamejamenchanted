@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dbhbxx871gscn"]
+[gd_scene load_steps=15 format=3 uid="uid://dbhbxx871gscn"]
 
 [ext_resource type="Script" uid="uid://dcyq7kyuylstx" path="res://Tools/Chisel/chisel.gd" id="1_0ruxo"]
 [ext_resource type="Script" uid="uid://6kmn3ox5u8mt" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_suid3"]
