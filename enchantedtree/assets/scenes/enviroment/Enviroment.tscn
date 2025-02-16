@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4anpju2ry1ms"]
+[gd_scene load_steps=18 format=3 uid="uid://d4anpju2ry1ms"]
 
 [ext_resource type="PackedScene" uid="uid://bjt8yj6klbbbx" path="res://assets/scenes/enviroment/terrain/ground.tscn" id="2_bhovc"]
 [ext_resource type="PackedScene" uid="uid://bquh1bnychfoh" path="res://assets/scenes/enviroment/flora/conifer.tscn" id="2_l8rf8"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dyv1j0mvk4sn7" path="res://assets/scenes/enviroment/terrain/ea_swamp_stones_03e.tscn" id="12_obqiy"]
 [ext_resource type="PackedScene" uid="uid://cdm2kscldoaft" path="res://assets/scenes/enviroment/props/wall_small.tscn" id="13_yo2cf"]
 [ext_resource type="PackedScene" uid="uid://d3tpwj8btdg5m" path="res://assets/scenes/enviroment/props/runeframe.tscn" id="14_ayjgm"]
+[ext_resource type="PackedScene" uid="uid://e1jp0df6qvug" path="res://assets/scenes/enviroment/props/vines_2.tscn" id="15_ev6ke"]
+[ext_resource type="PackedScene" uid="uid://4juykrbtwm70" path="res://assets/scenes/actors/cockatrice.tscn" id="16_4fost"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yo2cf"]
 size = Vector3(1, 59.13, 200)
@@ -363,3 +365,9 @@ shape = SubResource("BoxShape3D_yo2cf")
 
 [node name="runeframe" parent="." instance=ExtResource("14_ayjgm")]
 transform = Transform3D(-0.452113, 0.283413, 0.845737, 0.133613, 0.958998, -0.249941, -0.881897, 0, -0.471443, -8.2172, 3.1843, -49.9172)
+
+[node name="vines2" parent="." instance=ExtResource("15_ev6ke")]
+transform = Transform3D(-0.937404, 0, -0.348245, 0, 1, 0, 0.348245, 0, -0.937404, -6.54767, 0.0756564, -48.5673)
+
+[node name="cockatrice" parent="." instance=ExtResource("16_4fost")]
+transform = Transform3D(-0.960823, 0, -0.277164, 0, 1, 0, 0.277164, 0, -0.960823, -6.30127, -2.92064, -47.7191)
