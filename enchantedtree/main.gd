@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func getcontextmenutexts():
 	return [ "togglecandle", "toggleshadow", 
-			 "intotree", "spawnpt", "togglebloom", 
+			 "intotree", "spawnpt", "respawntools", 
 			 "cock1", "cock2" ]
 
 var Ddebugmode = true
@@ -29,6 +29,8 @@ func radialmenuitem(menutext):
 		cock1shadow()
 	elif menutext == "cock2":
 		cock2attack()
+	elif menutext == "respawntools":
+		$InsideTreeStuff.nextframerespawntools = true
 	else:
 		printerr("Unknown menu item ", menutext)
 		
@@ -74,7 +76,7 @@ func getyouintotree():
 		$XROrigin3D/MovementDesktopFlight.enabled = false
 
 	$WorldEnvironment/DirectionalLight3D.visible = false
-	$WorldEnvironment.environment.background_energy_multiplier = 0.09
+	$WorldEnvironment.environment.background_energy_multiplier = 0.09 if Ddebugmode else 0.001
 	tween = get_tree().create_tween()
 	tween.tween_method(set_fade, fadeto, 0.0, 1.0)
 	await tween.finished
@@ -123,8 +125,10 @@ func cock1shadow():
 func cock2attack():
 	$Cockatrice.visible = true
 	$Cockatrice/AnimationPlayer.play("move1")
-	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
 	$InsideTreeStuff/TreeDoorCover.visible = false
+	$Cockatrice/AudioStreamPlayerScream.play()
+	await get_tree().create_timer(2.0).timeout
+	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
@@ -135,8 +139,13 @@ func cock2attack():
 	$Cockatrice/AnimationPlayer.stop()
 	
 
+var candlelightlow = 0
+var candlelighthi = 0
+#candlelightlow = 1
+#candlelighthi = 3
+
 func _process(delta):
-	$InsideTreeStuff/CandleLightConetree.light_energy = clamp($InsideTreeStuff/CandleLightConetree.light_energy + randf_range(-14,14)*delta, 1, 3)
+	$InsideTreeStuff/CandleLightConetree.light_energy = clamp($InsideTreeStuff/CandleLightConetree.light_energy + randf_range(-14,14)*delta, candlelightlow, candlelighthi)
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
@@ -160,3 +169,15 @@ func _on_tree_approach_area_body_entered(body):
 		if not Ddebugmode:
 			await get_tree().create_timer(1.5).timeout
 			getyouintotree()
+
+func _on_candlestick_activation_body_entered(body):
+	print("candlestick_activation_body_entered ", body)
+	if body.get_parent().name == "FlyList":
+		if body.flytouches != 0:
+			body.queue_free()
+			$FireFlies.nmaxfireflies -= 1
+			$InsideTreeStuff/CandleLightConetree.visible = true
+			candlelighthi = min(3, candlelighthi + 0.3)
+			candlelightlow = candlelighthi/3
+			$InsideTreeStuff/CandlestickActivation/AudioStreamPlayer3D.play()
+			$WorldEnvironment.environment.background_energy_multiplier = 0.09
