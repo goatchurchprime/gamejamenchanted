@@ -13,6 +13,7 @@ var xzcollapse = 0.9
 @onready var flashfac = randf_range(0.002, 0.006)
 @onready var flashoffs = randf_range(-0.2, 0.8) + 0.0
 @onready var flyvecfac = randf_range(0.5, 1.2)
+@onready var flytouches = 0
 
 func _ready():
 	$firefly/firefly/AnimationPlayer.play("firefly_fly")
@@ -57,6 +58,9 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 			body.get_parent().trigger_haptic_pulse(&"haptic",0,min(1.0,abs(swatvelocity)*100),0.06,0)
 			if swatvelocity < -0.3:
 				get_parent().get_parent().sethandlighton(handlight)
-#				queue_free()
+				queue_free()
 			elif swatvelocity > 0.2:
+				flytouches += 1
 				flyvecfac = 0.2
+				xzrange = 3.0
+				

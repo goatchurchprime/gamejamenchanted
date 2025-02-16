@@ -30,6 +30,11 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 3d_physics/layer_14="Rune carve layer"
 3d_physics/layer_15="Rune detection layer"
 
+[physics]
+
+3d/default_linear_damp=1.435
+3d/default_angular_damp=1.287
+
 [rendering]
 
 renderer/rendering_method="mobile"
