@@ -20,7 +20,7 @@ func radialmenuitem(menutext):
 		$SpotLightIntoTree.visible = vv
 
 	elif menutext == "togglebloom":
-		$WorldEnvironment.environment.glow_enabled = not $WorldEnvironment.environment.glow_enabled
+		$WorldEnvDdebugmodeironment.environment.glow_enabled = not $WorldEnvironment.environment.glow_enabled
 	elif menutext == "intotree":
 		getyouintotree()
 	elif menutext == "spawnpt":
@@ -48,9 +48,6 @@ func getyouintotree():
 
 	for f in $FireFlies/FlyList.get_children():
 		f.queue_free()
-	$FireFlies.position = treecentretrans.origin
-	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
-	$FireFlies.nmaxfireflies = 10
 	
 	# rapid pulling us into the tree
 	if Ddebugmode:
@@ -85,6 +82,12 @@ func getyouintotree():
 	$InsideTreeStuff/TreeDoorCover.visible = true
 	$InsideTreeStuff/TreeDoorCover.use_collision = true
 	$InsideTreeStuff/TreeHollowShadow.visible = false
+
+	$FireFlies.position = treecentretrans.origin
+	print("gg ", $XROrigin3D/XRCamera3D.global_position.y)
+	$FireFlies.global_position.y = $XROrigin3D/XRCamera3D.global_position.y - 0.3
+	$FireFlies.nmaxfireflies = 10
+	$FireFlies.fireflyspawnaltitude = 1.5 if Ddebugmode else 3.0
 
 
 func getyoutothespawnpoint():
@@ -121,11 +124,13 @@ func cock2attack():
 	$Cockatrice.visible = true
 	$Cockatrice/AnimationPlayer.play("move1")
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
+	$InsideTreeStuff/TreeDoorCover.visible = false
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
 	await get_tree().create_timer(0.8).timeout
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
+	$InsideTreeStuff/TreeDoorCover.visible = true
 	$Cockatrice.visible = false
 	$Cockatrice/AnimationPlayer.stop()
 	
@@ -151,4 +156,7 @@ func _on_tree_approach_area_body_entered(body):
 	print(body)
 	if body.name == "PlayerBody":
 		$World/TweetingBirdsong.stop()
-		$InsideTreeStuff/TreeApproachArea/AudioStreamPlayer3D.play()
+		$InsideTreeStuff/TreeApproachArea/VultureSound.play()
+		if not Ddebugmode:
+			await get_tree().create_timer(1.5).timeout
+			getyouintotree()
