@@ -59,4 +59,7 @@ shape = SubResource("ConvexPolygonShape3D_a84iu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_ohmep")
 
+[connection signal="dropped" from="." to="." method="_on_dropped"]
+[connection signal="grabbed" from="." to="." method="_on_grabbed"]
+
 [editable path="Hammer2"]
