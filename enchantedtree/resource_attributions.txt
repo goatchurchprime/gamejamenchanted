@@ -4,3 +4,4 @@ Hammer hitting the chisel sound https://freesound.org/people/copyc4t/sounds/2446
 Chisel tapping correct rocks https://freesound.org/people/RayGunV/sounds/629456/
 Chisel tapping incorrect rocks https://freesound.org/people/SomeHumbleOnion/sounds/587904/
 Destroying rocks https://freesound.org/people/dheming/sounds/240982/
+Fence, broken tree, various stone models from https://opengameart.org/content/free-mid-poly-stylized-swamp-remastered by EmacEArt
