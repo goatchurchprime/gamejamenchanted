@@ -19,8 +19,6 @@ const hit_sounds = [
 func restore_chunk(material: ShaderMaterial, weight):
 	material.set_shader_parameter("DissolveRate", weight)
 	
-var chunk_tweens := {}
-	
 func _on_body_entered(body: StaticBody3D) -> void:
 	label_3d.text = str(body.get_groups())
 
@@ -42,10 +40,10 @@ func _on_body_entered(body: StaticBody3D) -> void:
 				
 				if !body_in_target.is_in_group("rune_point"):
 					var id = parent_mesh.get_instance_id()
-					if chunk_tweens.has(id):
-						chunk_tweens[id].kill()
-					chunk_tweens[id] = create_tween()
-					chunk_tweens[id].tween_method(func (rate): 
+					if body_in_target.owner.chunk_tweens.has(id):
+						body_in_target.owner.chunk_tweens[id].kill()
+					body_in_target.owner.chunk_tweens[id] = create_tween()
+					body_in_target.owner.chunk_tweens[id].tween_method(func (rate): 
 						restore_chunk(material, rate)
 					, 1.0, 0.0, 3.0)
 					
@@ -54,9 +52,27 @@ func _on_body_entered(body: StaticBody3D) -> void:
 		audio_stream_player.global_position = global_position
 		audio_stream_player.top_level = true
 		audio_stream_player.max_distance = 90
-		audio_stream_player.volume_linear = clampf(velocity / 3, 0.1, 0.8)
+		audio_stream_player.volume_linear = clampf(velocity / 4, 0.1, 0.8)
 		audio_stream_player.stream = hit_sounds.pick_random()
 		audio_stream_player.finished.connect(func():
 			audio_stream_player.queue_free())
 		add_child(audio_stream_player)
 		audio_stream_player.play()
+		
+		var owner_hand = body.owner.holding_hand
+		if XRServer and owner_hand:
+			var active_hand = owner_hand.tracker
+			var trigger_name = ""
+			if active_hand == "left_hand":
+				trigger_name = "haptic_left"
+			if active_hand == "right_hand":
+				trigger_name = "haptic_right"
+			XRServer.primary_interface.trigger_haptic_pulse(
+				trigger_name,
+				active_hand,
+				0.0,
+				1.0,
+				0.15,
+				0.0
+			)
+	
