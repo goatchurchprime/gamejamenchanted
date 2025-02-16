@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=36 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://qo7618ftcfpt" path="res://Tools/Chisel/Breakable.tscn" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://btmit5ngynkqv" path="res://goatcode/fire_fly.tscn" id="10_yaehf"]
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
-[ext_resource type="Script" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://b5wjd4ct2ntsw" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d4anpju2ry1ms" path="res://assets/scenes/enviroment/Enviroment.tscn" id="12_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dg1xv0ftd1wg0" path="res://sounds/vulture-1.wav" id="13_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://d3tpwj8btdg5m" path="res://assets/scenes/enviroment/props/runeframe.tscn" id="13_getpj"]
 [ext_resource type="AudioStream" uid="uid://da0qt32ukjpju" path="res://sounds/bug_09.ogg" id="13_yaehf"]
 [ext_resource type="AudioStream" uid="uid://ce8q413igd0j6" path="res://sounds/birds-isaiah658.ogg" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
@@ -41,6 +42,11 @@ fog_height_density = 0.2
 
 [sub_resource type="PrismMesh" id="PrismMesh_yaehf"]
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
+albedo_color = Color(0.376172, 0.238603, 4.81308e-08, 1)
+metallic = 0.68
+roughness = 0.23
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vivmo"]
 albedo_color = Color(0.282823, 0.234381, 0.159332, 1)
@@ -160,6 +166,12 @@ skeleton = NodePath("")
 [node name="Runecarve1" parent="InsideTreeStuff" instance=ExtResource("9_yaehf")]
 transform = Transform3D(0.901303, 0.108223, 0.419452, -0.119218, 0.992868, -1.3438e-09, -0.416461, -0.0500062, 0.907777, 1.51141, 0.488745, -0.808151)
 
+[node name="runeframe" parent="InsideTreeStuff/Runecarve1" instance=ExtResource("13_getpj")]
+transform = Transform3D(0.059643, 0.00678238, -0.998197, -0.0901123, 0.99593, 0.00138272, 0.994144, 0.0898674, 0.0600116, 0.000392914, -0.00327826, 0)
+
+[node name="Cube_755" parent="InsideTreeStuff/Runecarve1/runeframe" index="0"]
+material_override = SubResource("StandardMaterial3D_ryguw")
+
 [node name="Toolshelf" type="CSGCombiner3D" parent="InsideTreeStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.311392, -1.60554)
 material_override = SubResource("StandardMaterial3D_vivmo")
@@ -261,6 +273,15 @@ stream = ExtResource("13_2cqfq")
 [node name="Terrain" parent="World/Enviroment" index="2"]
 transform = Transform3D(0.999996, 8.70241e-05, -0.00278232, -9.14029e-05, 0.999999, -0.00156591, 0.00278218, 0.00156615, 0.999995, 0, 0, 0)
 
+[node name="EnchantedTreeSPLIT" parent="World/Enviroment/Terrain" index="0"]
+visible = false
+
+[node name="runeframe" parent="World/Enviroment" index="7"]
+visible = false
+
+[node name="vines2" parent="World/Enviroment" index="8"]
+visible = false
+
 [node name="PosSpawnPoint" type="MeshInstance3D" parent="World"]
 transform = Transform3D(0.603645, 0, -1.01548, 0, 1, 0, 0.815836, 0, 0.615477, -43.074, -2.77602, 42.1738)
 mesh = SubResource("PrismMesh_yaehf")
@@ -358,12 +379,14 @@ pitch_scale = 0.83
 [node name="OmniLight3D" type="OmniLight3D" parent="cockatrice"]
 transform = Transform3D(1, 7.13185e-08, 2.07693e-07, -7.45058e-09, 0.995368, -0.0961411, -4.47035e-08, 0.0961411, 0.995368, 1.31731, 1.72566, 2.81693)
 light_color = Color(1, 0.791127, 0.746804, 1)
+light_energy = 2.31
 omni_range = 6.377
 
 [connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
 [connection signal="body_entered" from="InsideTreeStuff/CandlestickActivation" to="." method="_on_candlestick_activation_body_entered"]
 [connection signal="body_entered" from="InsideTreeStuff/TreeApproachArea" to="." method="_on_tree_approach_area_body_entered"]
 
+[editable path="InsideTreeStuff/Runecarve1/runeframe"]
 [editable path="InsideTreeStuff/Chisel"]
 [editable path="World/Enviroment"]
 [editable path="Cockatrice"]

@@ -21,7 +21,7 @@ shader_parameter/Texture = ExtResource("5_wkg5g")
 shader_parameter/NoiseTexture = ExtResource("4_skiei")
 shader_parameter/DissolveRate = 0.0
 shader_parameter/HighlightWeight = 1.0
-shader_parameter/HighlightColor = Color(0.803622, 0.878852, 0.330929, 1)
+shader_parameter/HighlightColor = Color(0.35332, 0.244165, 0.120556, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_skiei"]
 material = SubResource("ShaderMaterial_mh3ws")

@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=21 format=3 uid="uid://hrr7aucpjpsd"]
+[gd_resource type="VisualShader" load_steps=22 format=3 uid="uid://hrr7aucpjpsd"]
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_vnrir"]
 parameter_name = "DissolveRate"
@@ -47,6 +47,8 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_p7so2"]
 default_input_values = [0, 0.75, 1, 1.0, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_p7so2"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bkf3c"]
 source = 5
@@ -100,6 +102,10 @@ void fragment() {
 // Texture2D:9
 	n_out9p0 = texture(NoiseTexture, UV);
 	float n_out9p1 = n_out9p0.r;
+
+
+// FloatConstant:24
+	float n_out24p0 = 0.000000;
 
 
 	vec4 n_out4p0;
@@ -167,6 +173,7 @@ void fragment() {
 // Output:0
 	ALBEDO = vec3(n_out2p0.xyz);
 	ALPHA = n_out9p0.x;
+	METALLIC = n_out24p0;
 	ROUGHNESS = n_out4p0.x;
 	EMISSION = vec3(n_out18p0.xyz);
 	NORMAL_MAP = vec3(n_out3p0.xyz);
@@ -177,6 +184,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-121.838, -32.538)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_iy1r5")
 nodes/fragment/2/position = Vector2(-720, -140)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_bkf3c")
@@ -217,4 +225,6 @@ nodes/fragment/22/node = SubResource("VisualShaderNodeFloatOp_asnlo")
 nodes/fragment/22/position = Vector2(-420, 1200)
 nodes/fragment/23/node = SubResource("VisualShaderNodeMix_p7so2")
 nodes/fragment/23/position = Vector2(-660, 1360)
-nodes/fragment/connections = PackedInt32Array(5, 0, 2, 2, 6, 0, 4, 2, 7, 0, 3, 2, 8, 0, 9, 2, 13, 0, 14, 1, 9, 1, 14, 0, 12, 0, 13, 0, 2, 0, 0, 0, 3, 0, 0, 9, 9, 0, 0, 1, 12, 0, 0, 19, 4, 0, 0, 3, 16, 0, 17, 1, 18, 0, 0, 5, 14, 0, 18, 0, 17, 0, 18, 1, 17, 0, 0, 18, 17, 0, 0, 17, 15, 0, 20, 0, 19, 0, 21, 0, 20, 0, 22, 0, 22, 0, 17, 0, 21, 0, 23, 2, 23, 0, 22, 1)
+nodes/fragment/24/node = SubResource("VisualShaderNodeFloatConstant_p7so2")
+nodes/fragment/24/position = Vector2(-240, 220)
+nodes/fragment/connections = PackedInt32Array(5, 0, 2, 2, 6, 0, 4, 2, 7, 0, 3, 2, 8, 0, 9, 2, 13, 0, 14, 1, 9, 1, 14, 0, 12, 0, 13, 0, 2, 0, 0, 0, 3, 0, 0, 9, 9, 0, 0, 1, 12, 0, 0, 19, 4, 0, 0, 3, 16, 0, 17, 1, 18, 0, 0, 5, 14, 0, 18, 0, 17, 0, 18, 1, 17, 0, 0, 18, 17, 0, 0, 17, 15, 0, 20, 0, 19, 0, 21, 0, 20, 0, 22, 0, 22, 0, 17, 0, 21, 0, 23, 2, 23, 0, 22, 1, 24, 0, 0, 2)
