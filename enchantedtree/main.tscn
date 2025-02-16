@@ -133,7 +133,7 @@ collision_layer = 24577
 size = Vector3(1, 1.2, 1)
 
 [node name="Breakable" parent="." instance=ExtResource("9_yaehf")]
-transform = Transform3D(0.593194, 0, -0.805059, 0, 1, 0, 0.805059, 0, 0.593194, -2.70826, 0.581937, -1.81971)
+transform = Transform3D(-0.631826, 0, 0.775109, 0, 1, 0, -0.775109, 0, -0.631826, -2.70826, 0.581937, -1.81971)
 
 [node name="DomiTools" type="Node3D" parent="."]
 

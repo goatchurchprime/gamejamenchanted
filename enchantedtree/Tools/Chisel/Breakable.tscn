@@ -1130,12 +1130,15 @@ shader = ExtResource("3_v83xy")
 shader_parameter/Texture = ExtResource("5_wkg5g")
 shader_parameter/NoiseTexture = ExtResource("4_skiei")
 shader_parameter/DissolveRate = 0.0
+shader_parameter/HighlightWeight = 1.0
+shader_parameter/HighlightColor = Color(0.803622, 0.878852, 0.330929, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_skiei"]
 material = SubResource("ShaderMaterial_mh3ws")
 
 [node name="Breakable" type="Node3D"]
 script = ExtResource("1_h232j")
+highlight_color = Color(0.0923998, 0.735859, 0.386564, 1)
 
 [node name="runeflat" parent="." instance=ExtResource("2_h232j")]
 
