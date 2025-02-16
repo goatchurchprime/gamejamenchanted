@@ -133,9 +133,12 @@ func cock2attack():
 	$cockatrice.visible = true
 	$cockatrice/AnimationPlayer.play("attack_tree2")
 	$InsideTreeStuff/TreeDoorCover.visible = false
+	print("made tree door cover off, ", $InsideTreeStuff/TreeDoorCover.visible)
 	$cockatrice/AudioStreamPlayerScream.play()
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = false
 	await get_tree().create_timer(2.0).timeout
+	$InsideTreeStuff/TreeDoorCover.visible = false
+	print("made tree door cover off, ", $InsideTreeStuff/TreeDoorCover.visible)
 	for s in [0.8, 0.6, 0.7, 0.5, 1.1]:
 		await get_tree().create_timer(s).timeout
 		$Cockatrice/AudioStreamPlayerCrunch.play()
@@ -145,6 +148,24 @@ func cock2attack():
 	$cockatrice.visible = false
 	$cockatrice/AnimationPlayer.stop()
 	
+	# you are now free to go
+	var tween = get_tree().create_tween()
+	tween.tween_method(set_fade, 0.0, 1.0, 1.6)
+	await tween.finished
+	tween.kill()
+
+	$InsideTreeStuff/TreeDoorCover.use_collision = false
+	$WorldEnvironment/DirectionalLight3D.visible = true
+	$InsideTreeStuff/TreeDoorCover.visible = false
+	$WorldEnvironment.environment.background_energy_multiplier = 0.5
+	$InsideTreeStuff/CandleLightConetree.visible = false
+	$XROrigin3D/XRControllerLeft/MovementDirect.max_speed = 6.0
+
+	tween = get_tree().create_tween()
+	tween.tween_method(set_fade, 1.0, 0.0, 3.6)
+	await tween.finished
+	tween.kill()
+
 
 var candlelightlow = 0
 var candlelighthi = 0
@@ -153,6 +174,9 @@ var candlelighthi = 0
 
 func _process(delta):
 	$InsideTreeStuff/CandleLightConetree.light_energy = clamp($InsideTreeStuff/CandleLightConetree.light_energy + randf_range(-14,14)*delta, candlelightlow, candlelighthi)
+	if $XROrigin3D.position.y < -10:
+		radialmenuitem("spawnpt")
+
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
@@ -165,7 +189,7 @@ func _input(event):
 		if event.keycode == KEY_B:
 			radialmenuitem("togglebloom")
 		if event.keycode == KEY_K:
-			radialmenuitem("cock2")
+			radialmenuitem("cocktrice")
 		
 
 func _on_tree_approach_area_body_entered(body):

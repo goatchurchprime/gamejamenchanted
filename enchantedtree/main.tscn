@@ -284,7 +284,7 @@ transform = Transform3D(1, 0, 0, 0, 0.012846, 0.999918, 0, -0.999918, 0.012846, 
 transform = Transform3D(1, 0, 0, 0, -0.313564, 0.949567, 0, -0.949567, -0.313564, 0, -0.530311, -2.26409)
 
 [node name="cockatrice" parent="." instance=ExtResource("18_82xsv")]
-transform = Transform3D(-0.595861, 0, -0.803088, 0, 1, 0, 0.803088, 0, -0.595861, -2.19387, 4.46594, -46.2185)
+transform = Transform3D(-0.672871, 0, -0.73976, 0, 1, 0, 0.73976, 0, -0.672871, -3.22535, 1.25288, -46.9838)
 
 [node name="Skeleton3D" parent="cockatrice/metarig" index="0"]
 bones/0/position = Vector3(0.0248251, 2.46774, -0.38346)
@@ -359,6 +359,11 @@ volume_db = 12.308
 transform = Transform3D(1, 0, 0, 0, 0.988401, 0.151865, 0, -0.151865, 0.988401, 0, -0.292365, -2.33042)
 stream = ExtResource("20_ryguw")
 pitch_scale = 0.83
+
+[node name="OmniLight3D" type="OmniLight3D" parent="cockatrice"]
+transform = Transform3D(1, 7.13185e-08, 2.07693e-07, -7.45058e-09, 0.995368, -0.0961411, -4.47035e-08, 0.0961411, 0.995368, 1.31731, 1.72566, 2.81693)
+light_color = Color(1, 0.791127, 0.746804, 1)
+omni_range = 6.377
 
 [connection signal="timeout" from="FireFlies/Timer" to="FireFlies" method="_on_timer_timeout"]
 [connection signal="body_entered" from="InsideTreeStuff/CandlestickActivation" to="." method="_on_candlestick_activation_body_entered"]
