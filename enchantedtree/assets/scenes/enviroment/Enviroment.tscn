@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4anpju2ry1ms"]
+[gd_scene load_steps=15 format=3 uid="uid://d4anpju2ry1ms"]
 
 [ext_resource type="PackedScene" uid="uid://bjt8yj6klbbbx" path="res://assets/scenes/enviroment/terrain/ground.tscn" id="2_bhovc"]
 [ext_resource type="PackedScene" uid="uid://bquh1bnychfoh" path="res://assets/scenes/enviroment/flora/conifer.tscn" id="2_l8rf8"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bncq1mxnl44w1" path="res://assets/scenes/enviroment/props/ea_fence_01a.tscn" id="11_poyyf"]
 [ext_resource type="PackedScene" uid="uid://dyv1j0mvk4sn7" path="res://assets/scenes/enviroment/terrain/ea_swamp_stones_03e.tscn" id="12_obqiy"]
 [ext_resource type="PackedScene" uid="uid://cdm2kscldoaft" path="res://assets/scenes/enviroment/props/wall_small.tscn" id="13_yo2cf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yo2cf"]
+size = Vector3(1, 59.13, 200)
 
 [node name="Enviroment" type="Node3D"]
 
@@ -344,3 +347,15 @@ transform = Transform3D(0.999079, -0.0270565, -0.0333108, 0.0266841, 0.999577, -
 
 [node name="EA_Fence_01a" parent="." instance=ExtResource("11_poyyf")]
 transform = Transform3D(-0.999634, 0, -0.0270493, 0, 1, 0, 0.0270493, 0, -0.999634, -0.231316, -1.73554, 44.3715)
+
+[node name="Inivisblewalls" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Inivisblewalls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Inivisblewalls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.6475, 28.5351, 40.3454)
+shape = SubResource("BoxShape3D_yo2cf")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Inivisblewalls/StaticBody3D"]
+transform = Transform3D(0.307506, 0, 0.951546, 0, 1, 0, -0.951546, 0, 0.307506, -18.8469, 28.5351, -83.0836)
+shape = SubResource("BoxShape3D_yo2cf")

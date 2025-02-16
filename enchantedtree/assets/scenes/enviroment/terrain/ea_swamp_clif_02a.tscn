@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://xehkq0cgobc2"]
+[gd_scene load_steps=4 format=3 uid="uid://xehkq0cgobc2"]
 
 [ext_resource type="PackedScene" uid="uid://dmhh6jpf65fyq" path="res://assets/imports/environment/terrain/EA_Swamp_Clif_02a.fbx" id="1_8mja0"]
 [ext_resource type="Material" uid="uid://pplksw06rxwy" path="res://assets/imports/materials/EA_Colorsheet.material" id="2_fhrqe"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fhrqe"]
+points = PackedVector3Array(-63.6944, 31.1327, 23.6611, 45.9986, 31.1327, -29.7115, 45.9986, 37.0632, -29.7115, 120.137, 1.48494, 20.6941, -66.6666, -1.48262, -3.01419, -39.9725, 45.9612, 11.7987, 120.137, -1.48262, -3.01419, 66.7484, 34.0956, -3.01419, -37.0188, 42.9937, -8.94816, -0.00316233, 2.03449, -17.949, -69.6388, -1.48262, 5.87021, 120.137, 7.41543, 20.6941, -54.7964, 31.1327, 26.6281, 20.3042, 39.5573, 12.0656, 10.425, 45.9612, -11.9096, -4.39887, 10.3783, -20.8051, 120.137, 7.41543, 2.90323, -69.6388, 31.1327, 20.6941, -51.8427, 34.0956, 26.6281, 57.8503, 31.1327, -29.7115, -66.6666, 16.3088, -0.0637524, -48.8705, -1.48262, -8.94816, 29.984, 3.28391, -16.9344, 96.4147, -1.48262, 5.87021, 62.8932, 32.9942, -21.7069, -34.0466, 42.9937, 17.7271, 117.164, 10.3783, 5.87021, -31.0744, 45.9612, 11.7987, -66.6666, 34.0956, 20.6941, 117.164, 1.48494, 20.6941, 120.137, 1.48494, -3.01419, -69.6388, 25.2022, 20.6941)
 
 [node name="EA_Swamp_Clif_02a" instance=ExtResource("1_8mja0")]
 
 [node name="EA_Swamp_Clif_02a" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_fhrqe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EA_Swamp_Clif_02a" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EA_Swamp_Clif_02a/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_fhrqe")
