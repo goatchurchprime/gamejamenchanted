@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4anpju2ry1ms"]
+[gd_scene load_steps=17 format=3 uid="uid://d4anpju2ry1ms"]
 
 [ext_resource type="PackedScene" uid="uid://bjt8yj6klbbbx" path="res://assets/scenes/enviroment/terrain/ground.tscn" id="2_bhovc"]
 [ext_resource type="PackedScene" uid="uid://bquh1bnychfoh" path="res://assets/scenes/enviroment/flora/conifer.tscn" id="2_l8rf8"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cdm2kscldoaft" path="res://assets/scenes/enviroment/props/wall_small.tscn" id="13_yo2cf"]
 [ext_resource type="PackedScene" uid="uid://d3tpwj8btdg5m" path="res://assets/scenes/enviroment/props/runeframe.tscn" id="14_ayjgm"]
 [ext_resource type="PackedScene" uid="uid://e1jp0df6qvug" path="res://assets/scenes/enviroment/props/vines_2.tscn" id="15_ev6ke"]
-[ext_resource type="PackedScene" uid="uid://4juykrbtwm70" path="res://assets/scenes/actors/cockatrice.tscn" id="16_4fost"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yo2cf"]
 size = Vector3(1, 59.13, 200)
@@ -23,7 +22,7 @@ size = Vector3(1, 59.13, 200)
 [node name="Enviroment" type="Node3D"]
 
 [node name="Ground" parent="." instance=ExtResource("2_bhovc")]
-transform = Transform3D(0.999999, -0.00134981, 0.000505193, 0.00134922, 0.999998, 0.00118792, -0.000506782, -0.00118724, 0.999999, 0, 0, 0)
+transform = Transform3D(0.999999, -0.00134981, 0.000505193, 0.00134922, 0.999998, 0.00118792, -0.000506782, -0.00118724, 0.999999, -0.0111494, 0.0211701, -0.0220299)
 
 [node name="Flora" type="Node3D" parent="."]
 
@@ -228,7 +227,7 @@ transform = Transform3D(0.919135, 0, 0.393942, 0, 2.905, 0, -0.393942, 0, 0.9191
 [node name="Terrain" type="Node3D" parent="."]
 
 [node name="EnchantedTreeSPLIT" parent="Terrain" instance=ExtResource("8_4yof7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06473, -0.674127, -50.7495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06995, -0.649711, -50.755)
 
 [node name="EA_Swamp_Clif_02a" parent="Terrain" instance=ExtResource("6_1lmuh")]
 transform = Transform3D(1.07103, 0, -0.217304, 0, 1, 0, 0.244197, 0, 0.953079, -6.92937, -0.642317, 75.556)
@@ -367,7 +366,4 @@ shape = SubResource("BoxShape3D_yo2cf")
 transform = Transform3D(-0.452113, 0.283413, 0.845737, 0.133613, 0.958998, -0.249941, -0.881897, 0, -0.471443, -8.2172, 3.1843, -49.9172)
 
 [node name="vines2" parent="." instance=ExtResource("15_ev6ke")]
-transform = Transform3D(-0.937404, 0, -0.348245, 0, 1, 0, 0.348245, 0, -0.937404, -6.54767, 0.0756564, -48.5673)
-
-[node name="cockatrice" parent="." instance=ExtResource("16_4fost")]
-transform = Transform3D(-0.960823, 0, -0.277164, 0, 1, 0, 0.277164, 0, -0.960823, -6.30127, -2.92064, -47.7191)
+transform = Transform3D(-0.937404, 0, -0.348245, 0, 1, 0, 0.348245, 0, -0.937404, -6.19157, 0.0973592, -48.5044)
