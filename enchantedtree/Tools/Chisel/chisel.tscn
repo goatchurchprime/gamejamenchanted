@@ -106,7 +106,7 @@ metadata/_custom_type_script = ExtResource("1_suid3")
 shape = SubResource("BoxShape3D_o45tt")
 
 [node name="XRToolsGrabPointHand" type="Marker3D" parent="XRToolsPickable"]
-transform = Transform3D(0.0313588, 0.999508, 0, -0.999508, 0.0313588, 0, 0, 0, 1, 0.0344455, -0.0101611, -0.0854263)
+transform = Transform3D(0.49873, 0.866757, 0, -0.866757, 0.49873, 0, 0, 0, 1, 0.0344455, 0.00464846, -0.0854263)
 script = ExtResource("4_mtskl")
 metadata/_custom_type_script = ExtResource("4_mtskl")
 

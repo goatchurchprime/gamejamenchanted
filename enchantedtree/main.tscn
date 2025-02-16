@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dv4xkidmcyi4k"]
+[gd_scene load_steps=28 format=3 uid="uid://dv4xkidmcyi4k"]
 
 [ext_resource type="Script" uid="uid://bvum7luk40mft" path="res://main.gd" id="1_dg77c"]
 [ext_resource type="Script" uid="uid://boe4rm0qcksye" path="res://addons/godot-xr-tools/staging/staging.gd" id="2_82xsv"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c8rfuvb3a80n5" path="res://sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" id="11_074og"]
 [ext_resource type="Script" uid="uid://b5wjd4ct2ntsw" path="res://goatcode/inside_tree_stuff.gd" id="12_w48qg"]
 [ext_resource type="PackedScene" uid="uid://d4anpju2ry1ms" path="res://assets/scenes/enviroment/Enviroment.tscn" id="12_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://dg1xv0ftd1wg0" path="res://sounds/vulture-1.wav" id="13_2cqfq"]
 [ext_resource type="AudioStream" uid="uid://ce8q413igd0j6" path="res://sounds/birds-isaiah658.ogg" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dbhbxx871gscn" path="res://Tools/Chisel/chisel.tscn" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://k0td2wlrkn2" path="res://Tools/Chisel/hammer.tscn" id="15_yaehf"]
@@ -195,8 +196,9 @@ collision_mask = 524288
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10845, 0)
 shape = SubResource("BoxShape3D_w48qg")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="InsideTreeStuff/TreeApproachArea"]
+[node name="VultureSound" type="AudioStreamPlayer3D" parent="InsideTreeStuff/TreeApproachArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.9858, 0)
+stream = ExtResource("13_2cqfq")
 
 [node name="World" type="Node3D" parent="."]
 
@@ -214,7 +216,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.3288, 0)
 stream = ExtResource("14_2cqfq")
 attenuation_model = 3
-volume_db = -4.396
+volume_db = -16.703
 autoplay = true
 
 [node name="Cockatrice" parent="." instance=ExtResource("16_2cqfq")]
