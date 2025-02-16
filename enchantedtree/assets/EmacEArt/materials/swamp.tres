@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bp5q26hgwsda3"]
+
+[ext_resource type="Shader" uid="uid://2mlxkbnr5i7m" path="res://assets/shaders/fake_light.gdshader" id="1_5uni1"]
+[ext_resource type="Texture2D" uid="uid://ywrnbk7ft276" path="res://assets/EmacEArt/Swamp_Remaster_2021/Texture/Swamp.png" id="2_o5pau"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5uni1")
+shader_parameter/texture_albedo = ExtResource("2_o5pau")
+shader_parameter/useAlpha = false
+shader_parameter/useEmission = false
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/heightmap_scale = 0.0
+shader_parameter/heightmap_flip = Vector2(0, 0)
+shader_parameter/heightmap_min_layers = 0
+shader_parameter/heightmap_max_layers = 0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/light_size = 5.0
+shader_parameter/light_pos = Vector3(0, 0, 0)
+shader_parameter/reflection_color = Color(1, 1, 1, 1)
+shader_parameter/reflection_strength = 0.5
+shader_parameter/specular_strength = 0.0
+shader_parameter/metallic_strength = 0.0
+shader_parameter/roughness_value = 1.0
+shader_parameter/reflection_offset = Vector2(0, 0)
+shader_parameter/reflection_scale = Vector2(1, 1)
