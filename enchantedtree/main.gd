@@ -2,6 +2,7 @@ extends Node3D
 
 func _ready() -> void:
 	$XROrigin3D/XRAim3D/RadialMenu.connect("menuitemselected", radialmenuitem)
+	radialmenuitem("spawnpt")
 
 func getcontextmenutexts():
 	return [ "spawnpt", 
