@@ -105,7 +105,8 @@ func getyoutothespawnpoint():
 		$DomiTools.queue_free()
 	$cockatrice.visible = false
 	$World/Enviroment/Terrain/EnchantedTreeSPLIT.visible = true
-	$World/Enviroment/vines2.visible = true
+	if has_node("World/Enviroment/vines2"):
+		$World/Enviroment/vines2.visible = true
 	Ddebugmode = false
 	$XROrigin3D/PlayerBody.teleport(find_child("PosSpawnPoint").global_transform)
 	$WorldEnvironment/DirectionalLight3D.visible = true
